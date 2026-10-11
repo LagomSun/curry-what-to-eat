@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 图标前景：一碗汤 + 一个问号（"今天吃什么"）
+     ★ 2026-10-11 比例调整（v1.7）：按用户要求「碗大一些、问号小一些」——
+       碗整体放大到 1.18 倍（原 22 半径 → 26），问号整体缩到 0.62 并略上移。
+       两套独立的 group，各自绕自己的 pivot 缩放，互不影响。
+     ★ 1.18 这个系数是量出来的：再大会顶到自适应图标安全区（半径 33）外
+       （实测 1.20 → 33.33 越线，1.18 → 32.94 安全）。
+     ★ VectorDrawable 的 group 变换是 p' = scale*(p-pivot) + pivot + translate，
+     和 SVG 的 p' = scale*p + translate 差一个 pivot —— 所以 translate 一律写 0，
+     缩放靠 pivot 指到形状自身中心来实现（这个坑之前专门记过）。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ============ 问号组（小一些）============
+         原问号以 x≈54 为中心、纵向 13~87。这里绕自身中心 (54, 50) 缩到 0.62。 -->
+    <group
+        android:scaleX="0.62"
+        android:scaleY="0.62"
+        android:pivotX="54"
+        android:pivotY="50">
+
+        <!-- 问号 -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#5D4A31"
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:pathData="M46,22 C46,13 62,13 62,23 C62,30 54,31 54,38" />
+
+        <!-- 问号下面那个点 -->
+        <path
+            android:fillColor="#5D4A31"
+            android:pathData="M50.4,46 A3.6,3.6 0 1,0 57.6,46 A3.6,3.6 0 1,0 50.4,46 Z" />
+    </group>
+
+    <!-- ============ 碗组（大一些）============
+         原碗以 (54, 58) 为碗口中心、半径 22。这里绕 (54, 68) 放大到 1.18 倍，
+         碗口中心落到 y = 58 + (58-68)*0.18 ≈ 56.2，碗底约 y = 81。 -->
+    <group
+        android:scaleX="1.18"
+        android:scaleY="1.18"
+        android:pivotX="54"
+        android:pivotY="68">
+
+        <!-- 碗的圈足 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:strokeColor="#5D4A31"
+            android:strokeWidth="4"
+            android:pathData="M48,74 L60,74 L60,81 L48,81 Z" />
+
+        <!-- 碗身 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:strokeColor="#5D4A31"
+            android:strokeWidth="4.5"
+            android:pathData="M32,58 C32,70 42,79 54,79 C66,79 76,70 76,58 Z" />
+
+        <!-- 碗口 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:strokeColor="#5D4A31"
+            android:strokeWidth="4.5"
+            android:pathData="M32,58 A22,6 0 1,0 76,58 A22,6 0 1,0 32,58 Z" />
+
+        <!-- 碗里的汤 -->
+        <path
+            android:fillColor="#E8A83A"
+            android:pathData="M40,58 A14,3.4 0 1,0 68,58 A14,3.4 0 1,0 40,58 Z" />
+    </group>
+</vector>

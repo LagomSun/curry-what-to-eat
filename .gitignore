@@ -1,0 +1,26 @@
+# ---- 本机/私密文件，绝不上传 ----
+local.properties          # 本机 SDK 路径 + 签名密码
+android/local.properties
+android/keystore/*.jks    # 签名私钥！泄露 = 任何人可冒充你发更新
+android/keystore/*.keystore
+android/app/build/
+android/build/
+android/.gradle/
+build/
+.gradle/
+
+# ---- 工作产物（不属于源码）----
+*.apk
+*.zip
+_shots/
+__pycache__/
+.workbuddy/
+*.log
+
+# ---- 配置：ai-config.json 是空白模板可上传；
+#      如果你填了真实 Key，务必不要提交 ----
+ai-config.local.json
+
+# 系统杂物
+.DS_Store
+Thumbs.db

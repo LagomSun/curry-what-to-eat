@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="yellow">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>咖喱吃什么 · 示意稿</title>
+<style>
+  /* ---- 本地内置字体：ZCOOL KuaiLe（SIL OFL 1.1，授权见 fonts/OFL.txt）----
+     无需联网，双击本文件即可显示手写体。
+     体积优先可换成 fonts/ZCOOLKuaiLe-subset.woff2（851KB → 25KB，
+     但只含当前页面的字，新增文案会掉字回退雅黑）。 */
+  @font-face{
+    font-family:'ZCOOL KuaiLe';
+    src:url('./fonts/ZCOOLKuaiLe-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-style:normal;
+    font-display:swap;
+  }
+  :root{
+    --paper:#FBF3E0;
+    --paper-2:#FDF8EC;
+    --ink:#4A3422;
+    --ink-2:#8A7457;
+    --yellow:#F2C452;
+    --yellow-deep:#DFA62C;
+    --yellow-soft:#FBE6A8;
+    --green:#B3CB84;
+    --green-deep:#89A854;
+    --green-soft:#DFE9C6;
+    --orange:#EE8B3C;
+    --c:var(--yellow);
+    --c-deep:var(--yellow-deep);
+    --c-soft:var(--yellow-soft);
+  }
+  [data-theme="green"]{
+    --c:var(--green);
+    --c-deep:var(--green-deep);
+    --c-soft:var(--green-soft);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'ZCOOL KuaiLe','Microsoft YaHei','PingFang SC',system-ui,sans-serif;
+    color:var(--ink);
+    background:#EDE6D8;
+    background-image:radial-gradient(#DED5C1 1px, transparent 1px);
+    background-size:18px 18px;
+  }
+  .stage{min-height:100dvh;display:grid;place-items:center;padding:26px 0}
+  .phone{
+    position:relative;width:390px;height:844px;border-radius:44px;overflow:hidden;
+    background:var(--paper);
+    box-shadow:0 30px 70px rgba(74,52,34,.28), 0 0 0 9px #2C2621, 0 0 0 11px #4A423A;
+  }
+  @media (max-width:520px){
+    .stage{padding:0}
+    .phone{width:100%;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+  }
+
+  .page{
+    position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+    padding:28px 22px 34px;display:flex;flex-direction:column;
+    opacity:0;pointer-events:none;transform:translateY(12px);
+    transition:opacity .28s ease, transform .28s ease;
+    scrollbar-width:none;
+  }
+  .page::-webkit-scrollbar{display:none}
+  .page.active{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- 首页头部 ---------- */
+  .head{position:relative;text-align:center;padding-top:14px;z-index:5}
+  .tape{
+    position:absolute;left:50%;top:0;width:124px;height:32px;margin-left:-62px;
+    background:repeating-linear-gradient(45deg,#F6D891 0 6px,#EDC36C 6px 12px);
+    opacity:.9;transform:rotate(-3.5deg);
+    clip-path:polygon(0 8%,4% 0,96% 5%,100% 0,100% 92%,95% 100%,5% 95%,0 100%);
+  }
+  .star{display:inline-block;vertical-align:middle}
+  h1.title{
+    position:relative;margin:22px 0 0;font-size:37px;line-height:1.15;letter-spacing:1px;
+    display:inline-block;
+  }
+  .title .star{width:26px;height:26px;margin-right:2px;margin-bottom:10px}
+  .squiggle{display:block;width:196px;height:12px;margin:4px auto 0}
+  .rays{position:absolute;right:-6px;top:52px}
+  .tip{
+    display:inline-block;margin:20px auto 0;padding:9px 20px;border-radius:12px;
+    background:#F6E7C2;font-size:15px;color:#6B563C;
+    box-shadow:0 2px 0 rgba(74,52,34,.06);
+  }
+  .arrow-down{position:absolute;left:0;top:138px;width:48px;height:56px;transform:rotate(8deg)}
+
+  /* ---------- 首页两个入口 ---------- */
+  .opts{margin-top:24px;display:flex;flex-direction:column;gap:18px}
+  .opt{
+    position:relative;height:226px;display:flex;align-items:center;
+    padding:0 20px;cursor:pointer;overflow:hidden;
+    transition:transform .18s ease;
+  }
+  .opt:active{transform:scale(.975)}
+  .opt-y{
+    background:var(--yellow);
+    clip-path:polygon(1.5% 5%,97% 0,99.5% 92%,2.5% 100%);
+    transform:rotate(-.6deg);
+  }
+  .opt-g{
+    background:var(--green);
+    clip-path:polygon(0 3%,98.5% 6%,96% 100%,3% 94%);
+    transform:rotate(.5deg);
+  }
+  .opt-text{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;z-index:2}
+  .mini-tag{
+    font-size:13px;padding:4px 12px;border-radius:8px;background:rgba(255,255,255,.62);
+    transform:rotate(-2deg);
+  }
+  .opt h2{margin:2px 0 0;font-size:40px;line-height:1;letter-spacing:2px}
+  .opt p{margin:0;font-size:15px;color:#6E5A3E}
+  .go-btn{
+    width:82px;height:54px;border-radius:17px;margin-top:6px;
+    display:grid;place-items:center;color:#fff;font-size:28px;line-height:1;
+    box-shadow:0 5px 0 rgba(74,52,34,.16);
+  }
+  .opt-y .go-btn{background:var(--orange)}
+  .opt-g .go-btn{background:#7FA349}
+  .plate{
+    flex:0 0 142px;width:142px;height:142px;border-radius:50%;
+    display:grid;place-items:center;
+    background:rgba(255,255,255,.55);
+    border:4px dashed rgba(255,255,255,.95);
+    box-shadow:inset 0 0 22px rgba(255,255,255,.5);
+  }
+  .plate span{font-size:84px;line-height:1;transform:rotate(-5deg)}
+  .spark{position:absolute;font-size:20px;color:#fff;opacity:.85}
+
+  .foot{
+    margin-top:auto;padding-top:18px;text-align:center;font-size:14px;color:#7A6449;
+  }
+  .foot .line{
+    display:inline-block;padding:10px 20px;border-radius:999px;background:#F6E7C2;
+  }
+
+  /* ---------- 结果页 ---------- */
+  .topbar{display:flex;align-items:center;height:38px}
+  .back{
+    display:inline-flex;align-items:center;gap:6px;border:0;cursor:pointer;
+    font-family:inherit;font-size:15px;color:#5D4A31;
+    background:#F1E3C3;padding:9px 18px 9px 14px;border-radius:11px;
+    clip-path:polygon(6% 0,100% 4%,96% 100%,0 96%);
+  }
+  .back:active{transform:scale(.96)}
+  .rhead{position:relative;text-align:center;margin-top:22px}
+  .rhead h1{
+    margin:0;font-size:33px;letter-spacing:1px;display:inline-block;position:relative;
+  }
+  .rhead .star{width:24px;height:24px;margin-right:4px;margin-bottom:8px}
+  .rhead .squiggle{width:172px;margin-top:6px}
+  .rrays{position:absolute;right:6px;top:2px;width:38px;height:34px}
+
+  .dish{
+    position:relative;margin-top:26px;padding:34px 24px 30px;flex:1;
+    display:flex;flex-direction:column;align-items:center;
+    background:var(--c);
+    clip-path:polygon(1% 2%,99% 0,100% 97%,0 100%);
+  }
+  .dish-plate{
+    position:relative;
+    width:212px;height:212px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(255,255,255,.6);
+    border:5px dashed rgba(255,255,255,.98);
+    box-shadow:0 14px 30px rgba(74,52,34,.14), inset 0 0 30px rgba(255,255,255,.55);
+  }
+  .dish-plate span{font-size:118px;line-height:1;transform:rotate(-4deg)}
+  /* AI 画好的图覆盖在 emoji 上；没有图就继续显示 emoji */
+  .dish-plate img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;border-radius:50%;display:none;
+  }
+  .dish-plate.has-photo img{display:block;animation:fadein .5s ease}
+  .dish-plate.has-photo span{display:none}
+  @keyframes fadein{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+  /* 画图中的小标记 */
+  .painting{
+    position:absolute;right:6px;bottom:10px;z-index:3;
+    display:none;align-items:center;gap:4px;
+    background:rgba(74,52,34,.82);color:#fff;font-size:11px;
+    padding:4px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .painting.on{display:inline-flex}
+  .mini-spin{
+    width:9px;height:9px;border-radius:50%;
+    border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
+    animation:spin .7s linear infinite;
+  }
+  .dish-name{
+    margin:26px 0 0;font-size:40px;line-height:1.2;letter-spacing:2px;text-align:center;
+    color:#4A3422;max-width:100%;
+  }
+  .tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+  .tag{
+    font-size:13px;padding:5px 13px;border-radius:9px;background:rgba(255,255,255,.72);
+    color:#5D4A31;
+  }
+  .tag:nth-child(odd){transform:rotate(-2deg)}
+  .tag:nth-child(even){transform:rotate(1.5deg)}
+  .dash{
+    width:120px;height:0;margin:20px 0 0;
+    border-top:3px dashed rgba(255,255,255,.95);
+  }
+  .dish-desc{margin:16px 0 0;font-size:16px;color:#6E5A3E;line-height:1.5;text-align:center}
+  /* 自己做模式下才出现的「要买的料」 */
+  .ing-box{
+    display:none;margin-top:16px;width:100%;
+    padding:13px 15px 14px;border-radius:15px;background:rgba(255,255,255,.5);
+  }
+  .ing-box.on{display:block}
+  .ing-title{font-size:13px;color:#6E5A3E;margin-bottom:9px;text-align:center}
+  .ing-list{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+  .ing-item{
+    font-size:13px;padding:5px 12px;border-radius:9px;
+    background:rgba(255,255,255,.95);color:#5D4A31;
+    box-shadow:0 1px 0 rgba(74,52,34,.06);
+  }
+  .ai-badge{
+    display:inline-block;font-size:11px;line-height:1;padding:4px 7px;border-radius:6px;
+    background:rgba(255,255,255,.9);color:#8A6A2E;margin-right:7px;font-style:normal;
+    vertical-align:2px;letter-spacing:.5px;
+  }
+  /* AI 思考态：卡片变淡 + 轻微呼吸，告诉用户"在跑"，而不是卡死 */
+  .dish{transition:opacity .22s ease, filter .22s ease}
+  .dish.loading{opacity:.38;filter:blur(1.5px) saturate(.7)}
+  .shuffle[disabled]{opacity:.6;pointer-events:none;box-shadow:0 7px 0 var(--c-deep)}
+  .shuffle .spin{
+    width:16px;height:16px;border-radius:50%;
+    border:3px solid rgba(255,255,255,.45);border-top-color:#fff;
+    animation:spin .7s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .shuffle-wrap{margin-top:24px}
+  .shuffle{
+    width:100%;border:0;cursor:pointer;font-family:inherit;
+    padding:19px 0;border-radius:999px;font-size:23px;letter-spacing:2px;color:#fff;
+    background:var(--c);
+    border:4px solid rgba(255,255,255,.95);
+    box-shadow:0 7px 0 var(--c-deep), 0 14px 24px rgba(74,52,34,.16);
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .12s ease;
+  }
+  .shuffle:active{transform:translateY(4px);box-shadow:0 3px 0 var(--c-deep)}
+  .shuffle .dice{font-size:24px;filter:saturate(.2) brightness(1.6)}
+  .swap{animation:swap .38s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes swap{
+    0%{opacity:0;transform:scale(.88) rotate(-2deg)}
+    100%{opacity:1;transform:scale(1) rotate(0)}
+  }
+  .watermark{
+    margin-top:14px;text-align:center;font-size:12px;color:#A08C70;letter-spacing:.5px;
+  }
+  /* ---------- 设置入口 ---------- */
+  .gear-line{
+    display:block;margin:12px auto 0;border:0;background:transparent;
+    font-family:inherit;font-size:13px;color:#8A7457;cursor:pointer;
+    padding:7px 16px;border-radius:999px;
+  }
+  .gear-line:active{background:#F1E3C3}
+  .gear-mini{
+    margin-left:auto;width:38px;height:38px;border-radius:12px;border:0;
+    background:#F1E3C3;color:#5D4A31;font-size:17px;cursor:pointer;
+    display:grid;place-items:center;line-height:1;
+  }
+  .gear-mini:active{transform:scale(.94)}
+
+  /* ---------- 设置页 ---------- */
+  #page-settings{display:block}   /* 这页不走 flex 纵向布局，避免多余伸缩 */
+  .set-card{
+    margin-top:18px;padding:16px 16px 14px;background:#F7EACB;
+    border-radius:16px;box-shadow:0 3px 0 rgba(74,52,34,.06);
+  }
+  .set-label{display:block;font-size:15px;color:#5D4A31;margin:0 0 9px}
+  .set-label .set-opt{font-size:12px;color:#A08C70}
+  .set-input{
+    display:block;height:46px;line-height:22px;
+    width:100%;border:2px solid #E6D3A8;background:#FDF8EC;border-radius:11px;
+    padding:0 13px;font-family:inherit;font-size:15px;color:#4A3422;
+    outline:none;appearance:none;-webkit-appearance:none;
+  }
+  .set-input:focus{border-color:#EE8B3C}
+  .key-row{display:flex;gap:8px;align-items:center}
+  .key-row .set-input{flex:1;min-width:0}
+  .eye{
+    flex:0 0 46px;height:46px;border:2px solid #E6D3A8;background:#FDF8EC;
+    border-radius:11px;font-size:17px;cursor:pointer;line-height:1;
+  }
+  .eye:active{background:#F1E3C3}
+  .set-hint{margin-top:9px;font-size:12px;color:#8A7457;line-height:1.5}
+  .ghost-btn{
+    width:100%;margin-top:12px;padding:15px 0;border-radius:999px;
+    border:3px dashed #D9C49A;background:transparent;color:#7A6449;
+    font-family:inherit;font-size:16px;cursor:pointer;
+  }
+  .ghost-btn:active{background:#F1E3C3}
+  .set-status{
+    margin-top:14px;font-size:13px;line-height:1.6;color:#7A6449;
+    text-align:center;min-height:20px;white-space:pre-wrap;
+  }
+  .set-status.ok{color:#5E8C3A}
+  .set-status.err{color:#C4553C}
+
+  /* ---------- 两段式切换（设置页始终用黄色主题，不跟结果页变绿）---------- */
+  #page-settings{--c:#F2C452;--c-deep:#DFA62C}
+  .mode-switch{
+    display:flex;gap:6px;padding:6px;background:#F1E3C3;border-radius:14px;
+  }
+  .ms-btn{
+    flex:1;padding:12px 4px;border:0;border-radius:10px;cursor:pointer;
+    background:transparent;font-family:inherit;font-size:14px;color:#8A7457;
+    transition:background .15s ease,color .15s ease;line-height:1.3;
+  }
+  .ms-btn.active{
+    background:var(--c);color:#4A3422;
+    box-shadow:0 2px 0 rgba(74,52,34,.14);
+  }
+  .ms-btn:active{transform:scale(.98)}
+
+  /* ---------- 设置页：启用AI 大开关（v1.7 新增） ----------
+     两级结构：顶层只有「启用 AI / 不启用 AI」；下面挂的卡片按需显示/隐藏。 */
+  .ai-switch{display:flex;gap:9px;margin-top:18px}
+  .as-btn{
+    flex:1;padding:17px 8px;border:3px solid #E6D3A8;border-radius:16px;
+    background:#FDF8EC;cursor:pointer;font-family:inherit;
+    display:flex;flex-direction:column;align-items:center;gap:5px;
+    color:#8A7457;transition:border-color .15s ease,background .15s ease,color .15s ease;
+  }
+  .as-btn .as-ico{font-size:25px;line-height:1}
+  .as-btn .as-txt{font-size:15px;font-weight:700;color:#5D4A31;line-height:1}
+  .as-btn .as-sub{font-size:11px;color:#A08C70;line-height:1.2}
+  .as-btn.active{
+    border-color:#EE8B3C;background:#FFF4DF;
+    box-shadow:0 3px 0 rgba(238,139,60,.22);
+  }
+  .as-btn.active .as-txt{color:#C96A18}
+  .as-btn.active .as-sub{color:#B07A3E}
+  .as-btn:active{transform:scale(.985)}
+
+  /* 按需显示的卡片组：默认藏起来，靠 .on 显示 */
+  .ai-only{display:none}
+  .ai-only.on{display:block}
+  /* 本地菜谱组：AI 关掉时也要显示 */
+  .local-always{display:block}
+  .ai-off-tip{
+    margin-top:18px;padding:15px 16px;background:#F7EACB;border-radius:16px;
+    font-size:13px;line-height:1.6;color:#7A6449;
+  }
+
+  /* ★ v1.8：大厨绘图按钮 —— 在圆形图片那一块的下方，单独一行全宽大按钮。
+     只有「启用 AI + 开了画图」时才显示（本地推荐时不需要生图，自然没有）。
+     放在 .dish 外面，因为 .dish 有 clip-path 会把超出的部分裁掉。 */
+  .chef-btn{
+    display:none;                      /* 默认藏起来，由 JS 按条件加 .on */
+    width:calc(100% - 16px);margin:14px 8px 0;flex:0 0 auto;
+    padding:14px 0;border:0;border-radius:999px;
+    font-family:inherit;font-size:16px;cursor:pointer;
+    align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(180deg,#FFE08A,#F6C64B);
+    color:#6B4A18;font-weight:700;letter-spacing:1px;
+    box-shadow:0 4px 0 rgba(180,130,30,.35);
+  }
+  .chef-btn.on{display:flex}
+  .chef-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(180,130,30,.35)}
+  .chef-btn[disabled]{opacity:.6;cursor:default}
+  .chef-ico{display:inline-flex;align-items:center}
+
+  /* 口味偏好标签 */
+  .pref-wrap{display:flex;flex-wrap:wrap;gap:7px}
+  .pref{
+    cursor:pointer;font-family:inherit;font-size:13px;
+    padding:8px 13px;border-radius:999px;
+    background:#FDF8EC;color:#8A7457;border:2px solid #E6D3A8;
+    transition:background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .pref.on{background:var(--c);color:#4A3422;border-color:var(--c)}
+  .pref:active{transform:scale(.96)}
+
+  /* 本地菜谱列表 */
+  .dish-list{
+    display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;
+    max-height:210px;overflow-y:auto;padding:2px;scrollbar-width:thin;
+  }
+  .dish-chip{
+    cursor:pointer;font-family:inherit;font-size:13px;line-height:1;
+    padding:8px 12px;border-radius:10px;border:0;
+    background:var(--c);color:#4A3422;
+  }
+  .dish-chip.off{background:#EEE4CD;color:#B3A48C;text-decoration:line-through}
+  .dish-chip:active{transform:scale(.96)}
+  .dish-chip .x{ margin-left:7px;color:#9A3B2A;font-weight:700 }
+  .dish-chip.off .x{ color:#C08A7E }
+
+  .toast{
+    position:absolute;left:50%;bottom:96px;transform:translate(-50%,10px);
+    background:rgba(74,52,34,.9);color:#fff;font-size:14px;padding:9px 18px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:all .25s ease;z-index:9;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone">
+
+    <!-- ============ 首页 ============ -->
+    <div class="page active" id="page-home">
+      <div class="head">
+        <div class="tape"></div>
+        <h1 class="title">
+          <svg class="star" viewBox="0 0 24 24" fill="#F2C452"><path d="M12 1l3.1 7.2 7.9.7-5.9 5.2 1.7 7.7L12 17.9 5.2 21.8l1.7-7.7L1 8.9l7.9-.7z"/></svg>今天吃什么？
+        </h1>
+        <svg class="squiggle" viewBox="0 0 200 14" preserveAspectRatio="none">
+          <path d="M3 9 Q 22 2 40 8 T 78 8 T 116 8 T 154 8 T 197 7" stroke="#EE8B3C" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="rays" width="52" height="46" viewBox="0 0 52 46">
+          <g stroke="#EE8B3C" stroke-width="4" stroke-linecap="round">
+            <path d="M14 30 L6 38"/><path d="M24 22 L22 12"/><path d="M36 26 L46 20"/>
+          </g>
+        </svg>
+        <div class="tip">别纠结啦，交给我吧～</div>
+        <svg class="arrow-down" width="60" height="66" viewBox="0 0 60 66">
+          <path d="M30 4 C 42 16, 44 34, 34 54" stroke="#9BB266" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <path d="M24 46 L34 58 L45 47" stroke="#9BB266" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="opts">
+        <div class="opt opt-y" data-go="takeout">
+          <div class="opt-text">
+            <span class="mini-tag">懒人必备 ❤️</span>
+            <h2>点外卖</h2>
+            <p>今天不想动～</p>
+            <div class="go-btn">→</div>
+          </div>
+          <div class="plate"><span>🍔</span></div>
+        </div>
+
+        <div class="opt opt-g" data-go="cook">
+          <div class="plate"><span>🍜</span></div>
+          <div class="opt-text">
+            <span class="mini-tag">厨房小能手</span>
+            <h2>自己做</h2>
+            <p>今天下个厨！</p>
+            <div class="go-btn">→</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <span class="line">⭐ 让每一餐都值得期待 ❤️</span>
+        <button class="gear-line" id="gear-home">⚙ AI 设置</button>
+      </div>
+    </div>
+
+    <!-- ============ 结果页（外卖 / 自制共用） ============ -->
+    <div class="page" id="page-result">
+      <div class="topbar">
+        <button class="back" data-back="1">← 返回</button>
+        <button class="gear-mini" id="gear-result">⚙</button>
+      </div>
+
+      <div class="rhead">
+        <h1 id="r-title">
+          <svg class="star" viewBox="0 0 24 24" fill="#F2C452"><path d="M12 1l3.1 7.2 7.9.7-5.9 5.2 1.7 7.7L12 17.9 5.2 21.8l1.7-7.7L1 8.9l7.9-.7z"/></svg>今天就吃这个！
+        </h1>
+        <svg class="squiggle" viewBox="0 0 200 14" preserveAspectRatio="none">
+          <path d="M3 9 Q 22 2 40 8 T 78 8 T 116 8 T 154 8 T 197 7" stroke="#EE8B3C" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="rrays" width="46" height="42" viewBox="0 0 46 42">
+          <g stroke="#EE8B3C" stroke-width="3.6" stroke-linecap="round" fill="none">
+            <path d="M6 30 C 16 24, 28 20, 40 16"/>
+            <path d="M32 12 L41 15 L38 24"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="dish" id="dish">
+        <div class="dish-plate" id="d-plate">
+          <span id="d-emoji">🍔</span>
+          <img id="d-photo" alt="">
+          <div class="painting" id="d-painting"><i class="mini-spin"></i>画图中</div>
+        </div>
+        <h2 class="dish-name" id="d-name">香辣鸡腿堡</h2>
+        <div class="tags" id="d-tags"></div>
+        <div class="dash"></div>
+        <p class="dish-desc"><i class="ai-badge" id="d-badge">AI 说</i><span id="d-desc">今天就它啦～</span></p>
+        <div class="ing-box" id="d-ing-box">
+          <div class="ing-title">🛒 要买的料</div>
+          <div class="ing-list" id="d-ing"></div>
+        </div>
+      </div>
+
+      <!-- ★ v1.8：大厨绘图按钮放在 .dish 外面（.dish 有 clip-path 会裁掉它），
+           紧挨圆形图片那一块的下方。仅「启用 AI + 开了画图」时出现；
+           不启用 AI 就用本地菜谱、不画图，自然没有它。 -->
+      <button class="chef-btn" id="d-redraw-pro" type="button">
+        <span class="chef-ico">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 20h16M5.5 20l9.6-9.6M18.6 6.9a2.3 2.3 0 0 0-3.2-3.2l-1.5 1.5 3.2 3.2 1.5-1.5z"/>
+            <path d="M13.9 5.2 15.1 4a2.3 2.3 0 0 1 3.2 3.2l-1.2 1.2L13.9 5.2z"/>
+          </svg>
+        </span>
+        <span id="d-redraw-label">大厨绘图</span>
+      </button>
+
+      <div class="shuffle-wrap">
+        <button class="shuffle" id="btn-shuffle">
+          <i class="dice">🎲</i><span id="btn-label">换 一 个</span>
+        </button>
+        <div class="watermark" id="watermark">示意稿 · 数据加载中…</div>
+      </div>
+    </div>
+
+    <!-- ============ AI 设置 ============ -->
+    <div class="page" id="page-settings">
+      <div class="topbar">
+        <button class="back" id="set-back">← 返回</button>
+      </div>
+
+      <div class="rhead">
+        <h1><svg class="star" viewBox="0 0 24 24" fill="#F2C452"><path d="M12 1l3.1 7.2 7.9.7-5.9 5.2 1.7 7.7L12 17.9 5.2 21.8l1.7-7.7L1 8.9l7.9-.7z"/></svg>设置</h1>
+        <svg class="squiggle" viewBox="0 0 200 14" preserveAspectRatio="none">
+          <path d="M3 9 Q 22 2 40 8 T 78 8 T 116 8 T 154 8 T 197 7" stroke="#EE8B3C" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- ========== 顶层开关：启用 AI / 不启用 AI ========== -->
+      <div class="ai-switch" id="sw-aion">
+        <button class="as-btn" data-aion="1" type="button">
+          <span class="as-ico">🤖</span>
+          <span class="as-txt">启用 AI</span>
+          <span class="as-sub">模型现想 + 可开画图</span>
+        </button>
+        <button class="as-btn" data-aion="0" type="button">
+          <span class="as-ico">📖</span>
+          <span class="as-txt">不启用 AI</span>
+          <span class="as-sub">只用本地菜谱</span>
+        </button>
+      </div>
+      <div class="set-status" id="aion-hint" style="margin-top:10px">—</div>
+
+      <!-- ==================== 以下三块仅在「启用 AI」时显示 ==================== -->
+      <div class="ai-only" id="blk-model">
+        <div class="set-card">
+          <div class="set-label">模型服务</div>
+          <select id="set-provider" class="set-input"></select>
+          <div class="set-hint" id="set-base">—</div>
+        </div>
+
+        <div class="set-card">
+          <div class="set-label">API Key</div>
+          <div class="key-row">
+            <input id="set-key" class="set-input" type="password" placeholder="粘贴你的 API Key" autocomplete="off" spellcheck="false">
+            <button id="set-eye" class="eye" type="button">👁</button>
+          </div>
+          <div class="set-hint">只保存在这台设备上，不会上传到任何地方，也不会写进安装包。</div>
+        </div>
+
+        <div class="set-card">
+          <div class="set-label">模型名 <span class="set-opt">（留空用默认）</span></div>
+          <input id="set-model" class="set-input" type="text" placeholder="" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div class="set-card">
+          <div class="set-label">接口地址 <span class="set-opt">（一般不用填）</span></div>
+          <input id="set-base-url" class="set-input" type="text" placeholder="" autocomplete="off" spellcheck="false">
+          <div class="set-hint">
+            留空就用上面选的那个服务的默认地址。<br>
+            只有在<b>电脑上跑了 Ollama</b>、且手机连同一个 WiFi 的情况下，才需要填电脑的局域网地址
+            （形如 http://192.168.x.x:11434/v1）。手机上直接装 Ollama 是用不了的。
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-only" id="blk-cloud">
+        <div class="set-card">
+          <div class="set-label">云端菜谱 <span class="set-opt">（让模型现想，不局限于本地那 30 道）</span></div>
+          <div class="set-hint" id="mode-hint">—</div>
+          <input id="set-city" class="set-input" type="text" style="margin-top:12px"
+                 placeholder="所在城市，例如 唐山" autocomplete="off">
+          <div class="set-hint">填了就优先推荐当地常见的吃食（小吃、套餐、早餐都算）。留空也行。</div>
+
+          <div class="set-label" style="margin-top:16px">口味偏好 <span class="set-opt">（可多选，点一下切换）</span></div>
+          <div class="pref-wrap" id="pref-wrap"></div>
+          <input id="set-preftext" class="set-input" type="text" style="margin-top:10px"
+                 placeholder="还有别的？例如 不吃香菜、要少油" autocomplete="off">
+
+          <button class="ghost-btn" id="test-ai" style="margin-top:16px">测 试 推 荐</button>
+          <div class="set-status" id="ai-status">只测上面这一套（服务 + Key + 接口地址），不碰画图。</div>
+        </div>
+
+        <div class="set-card">
+          <div class="set-label">菜品配图 <span class="set-opt" id="img-prov-label">（AI 画图）</span></div>
+          <div class="mode-switch" id="sw-img">
+            <button class="ms-btn" data-imgon="1">🎨 AI 画图</button>
+            <button class="ms-btn" data-imgon="0">🍔 只用 emoji</button>
+          </div>
+
+          <div class="set-label" style="margin-top:14px">画图服务商</div>
+          <select id="set-imgprovider" class="set-input"></select>
+          <div class="set-hint" id="img-prov-hint">—</div>
+
+          <div class="set-label" style="margin-top:14px">画图模型</div>
+          <select id="set-imgmodel" class="set-input"></select>
+          <div class="set-hint" id="imgmodel-hint">—</div>
+
+          <div class="key-row" style="margin-top:12px">
+            <input id="set-imgkey" class="set-input" type="password" placeholder="画图用的 API Key" autocomplete="off" spellcheck="false">
+            <button id="set-img-eye" class="eye" type="button">👁</button>
+          </div>
+          <div class="set-hint">画图的 Key 单独填（也可以和上面的文本 Key 相同，看服务商）。</div>
+
+          <div class="set-label" style="margin-top:14px">接口地址 <span class="set-opt">（一般不用填）</span></div>
+          <input id="set-imgbase" class="set-input" type="text" placeholder="" autocomplete="off" spellcheck="false">
+          <div class="set-hint" id="img-hint"></div>
+
+          <button class="ghost-btn" id="test-img" style="margin-top:14px">测 试 生 图</button>
+          <div class="set-status" id="img-status">只测画图这一套，不碰上面的推荐。</div>
+          <div id="test-img-preview" style="display:none;margin-top:12px;text-align:center">
+            <img id="test-img-thumb" alt="" style="width:150px;height:150px;border-radius:18px;box-shadow:0 4px 14px rgba(74,52,34,.18)">
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== 本地菜谱：不启用 AI 时才显示（启用 AI 时用云端菜谱，避免重复） ==================== -->
+      <div class="ai-only" id="blk-local">
+        <div class="set-card">
+          <div class="set-label">本地菜谱 <span class="set-opt" id="dish-count">—</span></div>
+          <div class="set-hint">这是「本地菜谱」模式用的池子。点菜名可以停用/恢复，停用的不会再被推荐。</div>
+          <div class="mode-switch" id="dish-pool" style="margin-top:11px">
+            <button class="ms-btn" data-pool="cook">🍳 自己做</button>
+            <button class="ms-btn" data-pool="takeout">🛵 点外卖</button>
+          </div>
+          <div class="dish-list" id="dish-list"></div>
+          <div class="set-label" style="margin-top:16px">加一道自己的菜</div>
+          <input id="new-dish-name" class="set-input" type="text" placeholder="菜名，例如 西红柿炒鸡蛋" autocomplete="off">
+          <input id="new-dish-ing" class="set-input" type="text" style="margin-top:8px"
+                 placeholder="配料（可留空）例如 西红柿、鸡蛋" autocomplete="off">
+          <div class="mode-switch" id="new-dish-mode" style="margin-top:8px">
+            <button class="ms-btn" data-mode="cook">🍳 自己做</button>
+            <button class="ms-btn" data-mode="takeout">🛵 点外卖</button>
+          </div>
+          <button class="ghost-btn" id="new-dish-add">加 进 菜 谱</button>
+        </div>
+      </div>
+
+      <button class="shuffle" id="set-save" style="margin-top:22px">
+        <span>保 存</span>
+      </button>
+      <div class="set-status" id="set-status"></div>
+
+      <div class="foot" style="margin-top:26px">
+        <span class="line" style="font-size:13px;line-height:1.6;text-align:left;display:block;padding:12px 16px">
+          不启用 AI 也完全能用 —— 从下面这份本地菜谱里随机推荐，不联网、不花钱。<br>
+          启用 AI 才需要填 Key：推荐语由模型现想，配图由画图模型现画。
+        </span>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">已经换过啦，来点别的？</div>
+  </div>
+</div>
+
+<script>
+/* ================= 数据源配置（只改这里就行） =================
+   ① 直接双击本文件打开       → 用下面的内置数据
+      （file:// 协议下浏览器禁止 fetch，这是安全限制，不是 bug）
+   ② 用 http 服务打开         → 自动读同目录 data.json
+      python -m http.server 8000  然后访问 http://localhost:8000/what-to-eat-demo.html
+   ③ 接自己的后端             → 把 SOURCE 改成接口地址即可，只要返回结构一致：
+      { "takeout": { "theme":"yellow", "title":"…", "list":[ {n,e,t[],d} ] },
+        "cook":    { "theme":"green",  "title":"…", "list":[ … ] } }
+      其它代码一行都不用动。
+=============================================================== */
+const SOURCE = './data.json';
+
+/* 内置本地菜谱：30 道，全部预置在 App 里，不联网也能用 */
+const BUILTIN = {
+  takeout: {
+    theme: 'yellow',
+    title: '今天就吃这个！',
+    list: [
+      { n:"驴肉火烧", e:"🥙", t:["酥香", "管饱"], d:"火烧酥脆肉嫩，一口下去满嘴香。",
+        ing:["驴肉", "火烧", "青椒"],
+        pic:"一个白面火烧夹着卤驴肉，切开露出肉片，旁边一碟青椒碎" },
+      { n:"煎饼果子", e:"🌯", t:["快手", "顶饱"], d:"脆饼一卷，边走边吃刚刚好。",
+        ing:["面糊", "鸡蛋", "脆饼", "生菜"],
+        pic:"一份卷好的煎饼果子，纸包着，露出金黄脆饼和翠绿生菜" },
+      { n:"麻辣烫", e:"🍲", t:["自选", "够味"], d:"想吃什么自己夹，一碗全搞定。",
+        ing:["丸子", "豆皮", "青菜", "宽粉"],
+        pic:"一碗红汤麻辣烫，竹签串着丸子和青菜，冒着热气" },
+      { n:"兰州牛肉面", e:"🍜", t:["汤面", "暖身"], d:"一清二白三红四绿，汤鲜面劲道。",
+        ing:["拉面", "牛肉", "萝卜", "香菜"],
+        pic:"一碗清汤牛肉面，白面条上铺着薄牛肉片和翠绿香菜" },
+      { n:"黄焖鸡米饭", e:"🍛", t:["下饭", "管饱"], d:"炖得烂乎，汤泡饭能吃两碗。",
+        ing:["鸡块", "香菇", "米饭", "青椒"],
+        pic:"一份黄焖鸡装在土黄砂锅里，酱色鸡块配香菇，旁边一碗白米饭" },
+      { n:"沙县拌面", e:"🍝", t:["便宜", "快"], d:"花生酱一拌，五分钟解决一餐。",
+        ing:["面条", "花生酱", "葱花"],
+        pic:"一盘拌好的碱水面，酱色均匀撒着葱花，旁边一碗清汤" },
+      { n:"香辣鸡腿堡", e:"🍔", t:["快餐", "顶饱"], d:"十几块管一顿，赶时间就它。",
+        ing:[],
+        pic:"一个汉堡，面包夹着炸鸡腿排和生菜，旁边一小盒薯条" },
+      { n:"炸鸡全家桶", e:"🍗", t:["解馋", "能分享"], d:"外皮咔哧一声，今天不装了。",
+        ing:[],
+        pic:"一桶金黄炸鸡，有鸡翅和鸡块，旁边一小盒蘸酱" },
+      { n:"石锅拌饭", e:"🍚", t:["拌饭", "锅巴香"], d:"底下那层锅巴才是灵魂。",
+        ing:["米饭", "牛肉", "青菜", "鸡蛋"],
+        pic:"一个黑色石锅，米饭上摆着彩色蔬菜丝、牛肉和一颗煎蛋" },
+      { n:"酸辣粉", e:"🍜", t:["酸辣", "过瘾"], d:"又酸又辣，嗦一口还想再来一口。",
+        ing:["红薯粉", "花生", "香菜"],
+        pic:"一碗红油酸辣粉，红薯粉浸在红汤里，撒着花生碎和香菜" },
+      { n:"螺蛳粉", e:"🍲", t:["臭香", "上头"], d:"袋子一撕那味儿就窜出来，汤都喝干。",
+        ing:[],
+        pic:"一碗白碗螺蛳粉，米粉配酸笋、腐竹和花生，红汤打底" },
+      { n:"肉夹馍", e:"🥙", t:["实在", "顶饱"], d:"馍酥肉烂，汁水浸到馍里最好吃。",
+        ing:[],
+        pic:"一个白吉馍从中间剖开，夹满剁碎的卤肉，汁水浸透" },
+      { n:"小笼包", e:"🥟", t:["精致", "有汤"], d:"先咬个小口吸汤，不然烫嘴。",
+        ing:[],
+        pic:"一笼蒸屉里六个白胖小笼包，褶子均匀，冒着热气" },
+      { n:"麻辣香锅", e:"🥘", t:["自选", "够味"], d:"一锅炒出来，米饭杀手来了。",
+        ing:["虾", "藕片", "土豆", "花菜"],
+        pic:"一个大铁锅炒着红油香锅，有虾、藕片和土豆片" },
+      { n:"鸡公煲", e:"🍲", t:["下饭", "暖身"], d:"咸香微辣，配米饭绝了。",
+        ing:["鸡块", "洋葱", "土豆", "青椒"],
+        pic:"一个砂锅里是酱色鸡块配洋葱土豆，汤汁浓郁" }
+    ]
+  },
+  cook: {
+    theme: 'green',
+    title: '今天就做这个！',
+    list: [
+      { n:"西红柿炒鸡蛋", e:"🍅", t:["家常", "快手"], d:"先炒蛋后炒番茄，汁拌饭最香。",
+        ing:["西红柿", "鸡蛋", "葱花", "白糖"],
+        pic:"一盘红黄相间的西红柿炒蛋，蛋块蓬松，汤汁微稠" },
+      { n:"青椒炒肉", e:"🫑", t:["下饭", "家常"], d:"肉片滑嫩青椒脆，配饭刚好。",
+        ing:["青椒", "猪肉", "蒜", "生抽"],
+        pic:"一盘青椒炒肉片，青椒翠绿，肉片油亮" },
+      { n:"醋溜土豆丝", e:"🥔", t:["便宜", "清爽"], d:"脆得咔嚓响，酸香开胃。",
+        ing:["土豆", "青椒", "醋", "干辣椒"],
+        pic:"一盘金黄土豆丝，配几根红辣椒丝，清爽利落" },
+      { n:"白菜猪肉饺子", e:"🥟", t:["管饱", "家常"], d:"皮薄馅大，蘸醋更香。",
+        ing:["面粉", "猪肉", "白菜", "大葱"],
+        pic:"一盘白瓷盘装的月牙形饺子，白白胖胖，旁边一小碟醋" },
+      { n:"西红柿疙瘩汤", e:"🍲", t:["暖胃", "省事"], d:"疙瘩筋道汤酸香，喝一碗熨帖。",
+        ing:["西红柿", "鸡蛋", "面粉", "葱花"],
+        pic:"一碗白瓷碗装的面疙瘩汤，红黄相间，撒了葱花" },
+      { n:"红烧茄子", e:"🍆", t:["下饭", "家常"], d:"软烂入味，油润不腻。",
+        ing:["茄子", "蒜", "生抽", "白糖"],
+        pic:"一盘酱色红烧茄子，撒着蒜末，油亮诱人" },
+      { n:"蒜蓉西兰花", e:"🥦", t:["清淡", "解腻"], d:"焯一下再炒，脆生生的。",
+        ing:["西兰花", "蒜", "盐"],
+        pic:"一盘翠绿西兰花，上面撒着金黄蒜末" },
+      { n:"麻婆豆腐", e:"🍲", t:["下饭", "麻辣"], d:"麻辣烫香，拌饭一绝。",
+        ing:["豆腐", "肉末", "豆瓣酱", "花椒"],
+        pic:"一碗红油麻婆豆腐，豆腐块完整，撒着花椒粉和葱花" },
+      { n:"可乐鸡翅", e:"🍗", t:["简单", "孩子爱吃"], d:"可乐收汁，甜咸挂亮。",
+        ing:["鸡翅", "可乐", "姜", "生抽"],
+        pic:"一盘酱亮可乐鸡翅，油光发亮，撒着白芝麻" },
+      { n:"蛋炒饭", e:"🍳", t:["快手", "清冰箱"], d:"剩饭的好归宿，粒粒分明。",
+        ing:["米饭", "鸡蛋", "葱花", "胡萝卜"],
+        pic:"一盘金黄的蛋炒饭，米粒分明，配着葱花和胡萝卜丁" },
+      { n:"紫菜蛋花汤", e:"🍜", t:["汤品", "简单"], d:"两分钟一锅，蛋花飘着像云。",
+        ing:["紫菜", "鸡蛋", "虾皮", "香油"],
+        pic:"一碗清汤，紫菜舒展，蛋花像云朵一样飘着" },
+      { n:"醋溜白菜", e:"🥬", t:["清爽", "快手"], d:"酸口解腻，配肉菜刚好。",
+        ing:["白菜", "醋", "干辣椒", "白糖"],
+        pic:"一盘醋溜白菜帮，色泽透亮，配着几段红辣椒" },
+      { n:"冬瓜排骨汤", e:"🍲", t:["清补", "炖一锅"], d:"汤清味鲜，炖上就不用管了。",
+        ing:["排骨", "冬瓜", "姜", "枸杞"],
+        pic:"一锅清汤，里面是白色冬瓜块和排骨，汤面浮着几粒枸杞" },
+      { n:"手擀面", e:"🍜", t:["实在", "费点劲"], d:"面宽劲道，浇头随便配。",
+        ing:["面粉", "鸡蛋", "盐"],
+        pic:"一碗宽面条浇着深色卤子，旁边配一碟小咸菜" },
+      { n:"香菇油菜", e:"🍄", t:["清淡", "快"], d:"鲜上加鲜，五分钟上桌。",
+        ing:["香菇", "油菜", "蒜", "蚝油"],
+        pic:"一盘翠绿油菜配深色香菇片，摆得整整齐齐" }
+    ]
+  }
+};
+
+let DATA = BUILTIN;
+let dataFrom = '本地内置数据';
+
+/* 校验外部数据，结构不对就当没读到 */
+function validData(o){
+  return !!o && ['takeout','cook'].every(k =>
+    o[k] && typeof o[k].title === 'string' &&
+    Array.isArray(o[k].list) && o[k].list.length > 0 &&
+    o[k].list.every(it => it && typeof it.n === 'string' && typeof it.e === 'string')
+  );
+}
+
+let mode = 'takeout';
+let cur  = -1;
+let busy = false;          // 防止连点，一次只跑一个请求（必须保证能释放）
+let reqToken = 0;          // 请求代次：切页后旧请求的结果作废，不覆盖新页面
+let settingsFrom = '#page-home';  // 从哪一页进的设置，返回时回到那里
+let cfgDirty = false;      // 设置页里改过并保存了 → 回结果页要重新要一次
+let currentItem = null;    // 结果页当前这道菜（点「重画」时要用它的菜名和画面描述）
+let recent = [];           // 最近推荐过的菜，传给模型让它避开
+let lastSrc = '';          // 上次推荐来源：ai / mock / local / local-fallback
+let lastModel = '';
+
+/* ================= 运行环境 & AI 配置 =================
+   同一份文件跑两个地方：
+   · 浏览器打开  → AI 走本机 server.py 的 /api/recommend（Key 留在服务端）
+   · 装进 APK    → 网页由原生 WebView 承载，AI 走 AndroidBridge 原生通道，
+                   Key 存在手机 SharedPreferences，既不进网页也不进安装包
+===================================================== */
+const IS_ANDROID = (typeof AndroidBridge !== 'undefined') && !!AndroidBridge;
+
+const PROVIDERS = {
+  deepseek:  { name:'DeepSeek',    base:'https://api.deepseek.com/v1',                         model:'deepseek-chat' },
+  moonshot:  { name:'Kimi 月之暗面', base:'https://api.moonshot.cn/v1',                        model:'moonshot-v1-8k' },
+  dashscope: { name:'通义千问',     base:'https://dashscope.aliyuncs.com/compatible-mode/v1',   model:'qwen-plus' },
+  zhipu:     { name:'智谱 GLM',     base:'https://open.bigmodel.cn/api/paas/v4',                model:'glm-4-flash' },
+  openai:    { name:'OpenAI',      base:'https://api.openai.com/v1',                           model:'gpt-4o-mini' },
+  ollama:    { name:'本地 Ollama（要电脑上跑）', base:'http://192.168.x.x:11434/v1', model:'qwen2.5:7b' },
+  custom:    { name:'自定义（OpenAI 兼容）', base:'', model:'' }
+};
+
+/* ================= 画图服务商（v1.7 新增，可选多家） =================
+   都是 OpenAI 风格的 POST {base}/images/generations（返回 data[0].url），
+   所以原生侧换 key/model/base 就能切换，不用改协议。
+   price 只做界面提示用，具体以各服务商实时定价为准。 */
+const IMG_PROVIDERS = {
+  zhipu: {
+    name: '智谱 CogView（国内，注册送额度）',
+    base: 'https://open.bigmodel.cn/api/paas/v4',
+    hint: 'bigmodel.cn 手机号注册，新号送额度。免费款 CogView-3-Flash 画得糙，付费款 CogView-4 画得像。',
+    models: [
+      { id:'cogview-3-flash', label:'CogView-3-Flash（免费，画不准）' },
+      { id:'cogview-4',       label:'CogView-4（¥0.06/张，画得像）' }
+    ]
+  },
+  modelscope: {
+    name: '魔搭 ModelScope（免费额度，模型多）',
+    base: 'https://api-inference.modelscope.cn/v1',
+    hint: 'modelscope.cn 注册后在「访问令牌」里拿 SDK Token。平台有免费推理额度，文生图模型上千个，填模型 ID 即可。',
+    models: [
+      { id:'Tongyi-MAI/Z-Image-Turbo',            label:'Z-Image-Turbo（阿里造相，推荐）' },
+      { id:'MAILAND/majicflus_v1',                 label:'MajicFlus（写实风格）' },
+      { id:'black-forest-labs/FLUX.1-schnell',     label:'FLUX.1-schnell（快，英文提示词更好）' },
+      { id:'Kwai-Kolors/Kolors',                   label:'Kolors 可图（中文友好）' }
+    ]
+  },
+  siliconflow: {
+    name: '硅基流动 SiliconFlow（有免费模型）',
+    base: 'https://api.siliconflow.cn/v1',
+    hint: 'siliconflow.cn 注册，新用户送 ¥16 / $1 体验金。部分文生图模型限时免费，模型广场可查。',
+    models: [
+      { id:'Kwai-Kolors/Kolors',                   label:'Kolors 可图（常列免费）' },
+      { id:'Qwen/Qwen-Image',                      label:'Qwen-Image（通义，画质好）' },
+      { id:'stabilityai/stable-diffusion-xl-base-1.0', label:'SDXL Base（经典）' }
+    ]
+  },
+  dashscope: {
+    name: '阿里云百炼 通义万相',
+    /* ★ v2.0：用 OpenAI 兼容模式（同步），老的 api/v1 是异步端点没有 /images/generations */
+    base: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+    hint: '阿里云百炼平台的 API Key。通义万相按张计费（约 ¥0.2-0.3/张），电商风、画面稳。',
+    models: [
+      { id:'wanx2.1-t2i-turbo', label:'wanx2.1-t2i-turbo（¥0.2/张，快）' },
+      { id:'wanx2.1-t2i-plus',  label:'wanx2.1-t2i-plus（¥0.29/张，细）' }
+    ]
+  },
+  custom: {
+    name: '自定义（OpenAI 兼容 /images/generations）',
+    base: '',
+    hint: '只要服务商提供 POST {地址}/images/generations 且返回 data[0].url，就能填这里。',
+    models: []
+  }
+};
+
+let AICFG = {
+  provider:'deepseek', key:'', model:'', base:'',
+  city: '',              // 所在城市，让 AI 优先推荐当地吃食
+  prefs: [],             // 口味偏好多选：不吃辣 / 爱吃肉 …
+  prefsText: '',         // 自由补充
+  myDishes: [],          // 自己加的菜 { n, ing, mode }
+  removed: [],           // 被停用的内置菜名
+  useAI: true,           // ★顶层开关：true=启用 AI，false=不启用（只用本地菜谱）
+  imgOn: false,          // 菜品配图：true=调画图模型
+  imgKey: '',            // 画图用的 Key（和文本模型的 Key 可能是两个）
+  imgProvider: 'zhipu',  // ★画图服务商（v1.7 起可选多家）
+  imgBase: '',           // 画图接口地址（留空用服务商默认）
+  imgModel: 'cogview-3-flash',  // 画图模型 ID
+    lastItem: null,        // ★上次显示的菜（兼容旧版保留）
+  lastMode: '',          // ★上次所在的场景 takeout/cook
+  lastByMode: {},        // ★v1.9：按场景各记各的菜 —— 点外卖/自己做互不覆盖
+  /* ★ v1.8：每个服务商各自记一套配置。切到 DeepSeek 显示 DeepSeek 填过的，
+     切到 Kimi 是空的（让你填新的），切回 DeepSeek 又恢复之前填的。
+     上面 key/base/model 只作为「当前生效的那套」的镜像，真正存的是下面三张表。 */
+  keyMap:   {},          // { provider: key }
+  baseMap:  {},          // { provider: base }
+  modelMap: {},          // { provider: model }
+  imgKeyMap:   {},       // { imgProvider: key }
+  imgBaseMap:  {},       // { imgProvider: base }
+  imgModelMap: {}        // { imgProvider: model }
+};
+
+/* 把当前生效的 key/base/model 回写到「按服务商」的那张表里。
+   每次切换服务商、点保存、点测试之前都要先调它，否则刚填的东西会丢。 */
+function stashTextCfg(){
+  const p = AICFG.provider;
+  if (!p) return;
+  AICFG.keyMap   = AICFG.keyMap   || {}; AICFG.keyMap[p]   = AICFG.key   || '';
+  AICFG.baseMap  = AICFG.baseMap  || {}; AICFG.baseMap[p]  = AICFG.base  || '';
+  AICFG.modelMap = AICFG.modelMap || {}; AICFG.modelMap[p] = AICFG.model || '';
+}
+function stashImgCfg(){
+  const p = AICFG.imgProvider;
+  if (!p) return;
+  AICFG.imgKeyMap   = AICFG.imgKeyMap   || {}; AICFG.imgKeyMap[p]   = AICFG.imgKey   || '';
+  AICFG.imgBaseMap  = AICFG.imgBaseMap  || {}; AICFG.imgBaseMap[p]  = AICFG.imgBase  || '';
+  AICFG.imgModelMap = AICFG.imgModelMap || {}; AICFG.imgModelMap[p] = AICFG.imgModel || '';
+}
+
+/* 切到某个服务商时，把它之前存的那套配置取出来用 */
+function pullTextCfg(p){
+  AICFG.provider = p;
+  AICFG.key   = (AICFG.keyMap   || {})[p] || '';
+  AICFG.base  = (AICFG.baseMap  || {})[p] || '';
+  AICFG.model = (AICFG.modelMap || {})[p] || '';
+}
+function pullImgCfg(p){
+  AICFG.imgProvider = p;
+  AICFG.imgKey   = (AICFG.imgKeyMap   || {})[p] || '';
+  AICFG.imgBase  = (AICFG.imgBaseMap  || {})[p] || '';
+  const saved = (AICFG.imgModelMap || {})[p];
+  if (saved) AICFG.imgModel = saved;
+  else {
+    /* 这家的模型还没选过 → 用该服务商的第一个默认模型 */
+    const ip = IMG_PROVIDERS[p];
+    AICFG.imgModel = (ip && ip.models && ip.models.length) ? ip.models[0].id : '';
+  }
+}
+
+function loadCfg(){
+  try{
+    const raw = IS_ANDROID ? AndroidBridge.getConfig() : localStorage.getItem('wte_ai');
+    if (raw) AICFG = Object.assign(AICFG, JSON.parse(raw));
+  }catch(e){ /* 配置坏了就当没配 */ }
+  if (!PROVIDERS[AICFG.provider]) AICFG.provider = 'deepseek';
+  if (!IMG_PROVIDERS[AICFG.imgProvider]) AICFG.imgProvider = 'zhipu';
+  /* 老版本没有分区表：如果发现表是空的、但镜像里有值，就把它当成本服务商的值补进去，
+     这样升级上来不会把已经填好的 Key 弄丢 */
+  AICFG.keyMap   = AICFG.keyMap   || {}; AICFG.baseMap  = AICFG.baseMap  || {}; AICFG.modelMap = AICFG.modelMap || {};
+  AICFG.imgKeyMap = AICFG.imgKeyMap || {}; AICFG.imgBaseMap = AICFG.imgBaseMap || {}; AICFG.imgModelMap = AICFG.imgModelMap || {};
+  if (AICFG.key   && !AICFG.keyMap[AICFG.provider])     AICFG.keyMap[AICFG.provider]     = AICFG.key;
+  if (AICFG.base  && !AICFG.baseMap[AICFG.provider])    AICFG.baseMap[AICFG.provider]    = AICFG.base;
+  if (AICFG.model && !AICFG.modelMap[AICFG.provider])   AICFG.modelMap[AICFG.provider]   = AICFG.model;
+  if (AICFG.imgKey && !AICFG.imgKeyMap[AICFG.imgProvider])   AICFG.imgKeyMap[AICFG.imgProvider]   = AICFG.imgKey;
+  if (AICFG.imgBase && !AICFG.imgBaseMap[AICFG.imgProvider]) AICFG.imgBaseMap[AICFG.imgProvider] = AICFG.imgBase;
+  if (AICFG.imgModel && !AICFG.imgModelMap[AICFG.imgProvider]) AICFG.imgModelMap[AICFG.imgProvider] = AICFG.imgModel;
+  /* ★ v2.0：老版本给百炼存的是 api/v1（异步端点，画不了）→ 自动迁到兼容模式 */
+  const fixDs = (b) => (b && b.indexOf('dashscope.aliyuncs.com/api/v1') >= 0)
+    ? b.replace('dashscope.aliyuncs.com/api/v1', 'dashscope.aliyuncs.com/compatible-mode/v1') : b;
+  if (AICFG.imgProvider === 'dashscope') {
+    AICFG.imgBase = fixDs(AICFG.imgBase);
+    if (AICFG.imgBaseMap && AICFG.imgBaseMap.dashscope) AICFG.imgBaseMap.dashscope = fixDs(AICFG.imgBaseMap.dashscope);
+  }
+  return AICFG;
+}
+function saveCfg(){
+  stashTextCfg();          // 落盘前先把当前这套回写，免得丢
+  stashImgCfg();
+  const s = JSON.stringify(AICFG);
+  try{
+    if (IS_ANDROID) AndroidBridge.saveConfig(s);
+    else localStorage.setItem('wte_ai', s);
+  }catch(e){}
+}
+/* 三个判断分开写清楚：
+   aiConfigured —— Key 填了没（配置层面）
+   aiReady      —— 这次真的会走 AI 吗（还要看用户有没有手动切到本地）
+   imgReady     —— 会不会调画图模型 */
+function aiConfigured(){ return !!(AICFG.provider && AICFG.key && AICFG.key.trim()); }
+function aiReady(){ return aiConfigured() && AICFG.useAI !== false; }
+function imgReady(){ return AICFG.imgOn === true && !!(AICFG.imgKey && AICFG.imgKey.trim()); }
+
+/* 原生算完后会调用 window.__aiResult(id, json字符串) */
+const __aiPending = {};
+window.__aiResult = function(id, jsonStr){
+  const fn = __aiPending[id];
+  if (!fn) return;
+  delete __aiPending[id];
+  try{
+    const o = JSON.parse(jsonStr || '{}');
+    if (o && o.ok && o.dish) fn({ dish:o.dish, source:o.source || 'ai', model:o.model || '' });
+    else fn({ dish:null, source:'local-fallback', reason:(o && o.reason) || '调用失败' });
+  }catch(e){
+    fn({ dish:null, source:'local-fallback', reason:'返回内容无法解析' });
+  }
+};
+
+/* ================= 菜品配图（智谱 CogView，异步） =================
+   图要 30-180 秒才出，所以流程是：先把 emoji 显示出来，
+   图在后台画，画好自动盖上；同一道菜只画一次（原生侧还有文件缓存）。 */
+const __imgPending = {};
+const photoCache = {};        // 本次会话内已拿到的图，不重复请求
+let imgToken = 0;             // 换菜后旧图作废
+
+window.__imgResult = function(id, jsonStr){
+  const fn = __imgPending[id];
+  if (!fn) return;
+  delete __imgPending[id];
+  try{
+    const o = JSON.parse(jsonStr || '{}');
+    if (o && o.ok && o.data){ window.__imgErr = ''; fn(o.data); }
+    else {
+      /* ★ v1.9：把失败原因存下来，调用方（loadPhoto / testImage）好如实告诉用户 */
+      window.__imgErr = (o && (o.reason || o.error)) || '画图失败';
+      fn(null);
+    }
+  }catch(e){ window.__imgErr = '返回内容无法解析'; fn(null); }
+};
+
+async function askImage(name, pic, force, pro){
+  if (!imgReady() || !name) return null;
+  if (force) delete photoCache[name];              // 重画：先丢掉旧图
+  else if (photoCache[name]) return photoCache[name];
+
+  if (IS_ANDROID){
+    const data = await new Promise(resolve => {
+      const id = 'im' + Date.now() + Math.floor(Math.random() * 10000);
+      __imgPending[id] = resolve;
+      try { AndroidBridge.drawImage(name, pic || '', force ? '1' : '0', pro ? '1' : '0', id); }
+      catch(e){ delete __imgPending[id]; resolve(null); }
+      setTimeout(() => {                 // ★ v2.0：异步服务商要提交+轮询，给足 5 分钟
+        if (__imgPending[id]){ delete __imgPending[id]; resolve(null); }
+      }, 300000);
+    });
+    if (data) photoCache[name] = data;
+    return data;
+  }
+
+  try{
+    const res = await fetch('/api/image?name=' + encodeURIComponent(name), { cache:'no-store' });
+    const d = await res.json();
+    if (d && d.ok && d.data){ photoCache[name] = d.data; return d.data; }
+  }catch(e){ /* 没有本地服务 */ }
+  return null;
+}
+async function loadPhoto(name, pic, force, pro){
+  const plate = document.getElementById('d-plate');
+  const img   = document.getElementById('d-photo');
+  const mark  = document.getElementById('d-painting');
+  if (!plate || !img) return;
+
+  const my = ++imgToken;
+  if (!force){                              // 重画时保留旧图，新图画好再替换
+    plate.classList.remove('has-photo');
+    img.removeAttribute('src');
+  }
+
+  if (!imgReady() || !name){ if (mark) mark.classList.remove('on'); return; }
+
+  if (!force && photoCache[name]){           // 已经画过，直接用（不花额度）
+    img.src = photoCache[name];
+    plate.classList.add('has-photo');
+    if (mark) mark.classList.remove('on');
+    return;
+  }
+
+  if (mark) mark.classList.add('on');
+  const data = await askImage(name, pic, force, pro);
+  if (my !== imgToken) return;               // 菜已经换了，这张作废
+  if (mark) mark.classList.remove('on');
+  if (data){
+    img.src = data;
+    plate.classList.add('has-photo');
+  } else if (force){
+    /* ★ v1.9：重画失败不再默默吞掉 —— 用户点了按钮却没反应会以为是死了 */
+    toast('画图没成功' + (window.__imgErr ? '：' + window.__imgErr : '') + '，可稍后再点一次');
+  }
+  syncChefBtn();                             // 图有了 → 按钮文案改成「再画一张」
+}
+
+/* ★ v1.8：大厨绘图按钮的显隐 —— 只有「启用 AI + 开了画图 + 有图/有菜」才给。
+   本地推荐（不启用 AI）不需要生图，就没有这个按钮。 */
+function syncChefBtn(){
+  const btn = document.getElementById('d-redraw-pro');
+  if (!btn) return;
+  const show = (AICFG.useAI !== false) && imgReady() && !!currentItem;
+  btn.classList.toggle('on', show);
+  btn.disabled = !show;
+  const lab = document.getElementById('d-redraw-label');
+  const plate = document.getElementById('d-plate');
+  const hasPhoto = plate && plate.classList.contains('has-photo');
+  if (lab) lab.textContent = hasPhoto ? '大厨重绘（再画一张）' : '大厨绘图（画一张图）';
+}
+
+/* 向大模型要一道菜；任何失败都返回 null，由调用方回退本地 —— 界面永远不会卡死 */
+async function askAI(m){
+  if (!aiReady()) return null;
+  const rec = recent.slice(-4).join(',');
+
+  if (IS_ANDROID){
+    return await new Promise(resolve => {
+      const id = 'cb' + Date.now() + Math.floor(Math.random() * 10000);
+      __aiPending[id] = resolve;
+      try { AndroidBridge.recommend(m, rec, id); }
+      catch(e){ delete __aiPending[id]; resolve(null); }
+      setTimeout(() => {                     // 原生万一不回调，也别让界面永远转圈
+        if (__aiPending[id]){ delete __aiPending[id]; resolve(null); }
+      }, 25000);
+    });
+  }
+
+  /* 浏览器：走同机 server.py */
+  try{
+    const res = await fetch('/api/recommend?mode=' + m + '&recent=' + encodeURIComponent(rec), { cache:'no-store' });
+    if (res.ok){
+      const d = await res.json();
+      if (d && d.ok && d.dish) return { dish:d.dish, source:d.source || 'ai', model:d.model || '' };
+    }
+  }catch(e){ /* 没起服务 → 回退本地 */ }
+  return null;
+}
+
+/* ---------------- 页面切换 ---------------- */
+function showPage(id){
+  ['#page-home', '#page-result', '#page-settings'].forEach(s => {
+    const el = document.querySelector(s);
+    if (el) el.classList.remove('active');
+  });
+  const p = document.querySelector(id);
+  if (p){ p.classList.add('active'); p.scrollTop = 0; }
+}
+
+const $ = s => document.querySelector(s);
+const pageHome = $('#page-home');
+const pageResult = $('#page-result');
+const dish = $('#dish');
+
+/* 本地池 = 内置菜谱（去掉被停用的） + 用户自己加的 */
+function localPool(m){
+  const base = (DATA[m] && DATA[m].list) ? DATA[m].list : [];
+  const removed = AICFG.removed || [];
+  const mine = (AICFG.myDishes || []).filter(d => (d.mode || 'cook') === m);
+  return base.filter(d => removed.indexOf(d.n) < 0).concat(mine);
+}
+
+function pick(m){
+  const pool = localPool(m);
+  if (!pool.length){
+    return { n:'菜谱空了', e:'🍽', t:['去设置'], d:'你把菜都停用了，去「AI 设置」里开几个吧。', ing:[] };
+  }
+  const len = pool.length;
+  let i = Math.floor(Math.random()*len);
+  if (len > 1 && i === cur) i = (i + 1 + Math.floor(Math.random()*(len-1))) % len;
+  cur = i;
+  return pool[i];
+}
+
+function render(item, fromAI){
+  $('#d-emoji').textContent = item.e;
+  $('#d-name').textContent  = item.n;
+  $('#d-desc').textContent  = item.d;
+  const tags = Array.isArray(item.t) ? item.t : [];
+  $('#d-tags').innerHTML = tags.map(x => '<span class="tag">' + x + '</span>').join('');
+  $('#d-badge').style.display = fromAI ? 'inline-block' : 'none';
+
+  /* 「要买的料」：自己做的时候才有意义，点外卖不显示 */
+  const box = document.getElementById('d-ing-box');
+  if (box){
+    const ings = Array.isArray(item.ing) ? item.ing.filter(x => x && x !== 'null') : [];
+    if (ings.length && mode === 'cook'){
+      document.getElementById('d-ing').innerHTML =
+        ings.map(x => '<span class="ing-item">' + x + '</span>').join('');
+      box.classList.add('on');
+    } else {
+      box.classList.remove('on');
+      document.getElementById('d-ing').innerHTML = '';
+    }
+  }
+
+  dish.classList.remove('swap');
+  void dish.offsetWidth;              // 强制重排，让动画能重播
+  dish.classList.add('swap');
+  syncChefBtn();                      // 换菜后重算「大厨绘图」按钮显隐与文案
+}
+
+/* 向大模型要一个推荐；要不到就本地随机 —— 两种情况界面都出得来结果。
+   ★ busy 必须用 try/finally 释放，否则一次异常就会让它永久卡住，
+     之后「换一个」全部失效（2026-10-06 真踩过）。
+   ★ reqToken 用来作废过期请求：切了页面之后，旧请求的结果不再覆盖新页面。 */
+async function shuffle(){
+  if (busy) return;
+  busy = true;
+  const myToken = ++reqToken;
+
+  const btn   = $('#btn-shuffle');
+  const dice  = btn.querySelector('i');
+  const label = $('#btn-label');
+  const useAI = aiReady();
+
+  if (useAI){
+    btn.disabled = true;
+    dice.className = 'spin'; dice.textContent = '';
+    label.textContent = 'AI 正在想…';
+    dish.classList.add('loading');
+  }
+
+  try{
+    let item = null, src = 'local', model = '';
+    const r = await askAI(mode);        // 没配 Key / 调用失败都返回 null
+    if (myToken !== reqToken) return;   // 页面已经切走，这次结果作废
+
+    if (r && r.dish && r.dish.n){ item = r.dish; src = r.source; model = r.model; }
+    if (!item){
+      item = pick(mode);
+      src = useAI ? 'local-fallback' : 'local';   // 配了 AI 却没拿到 → 如实标注
+    }
+
+    lastSrc = src; lastModel = model;
+    currentItem = item;
+    render(item, src === 'ai' || src === 'mock');
+    recent.push(item.n);
+    if (recent.length > 8) recent.shift();
+
+    /* ★ 记住这一次的结果：下次进这个场景先显示它，不自动刷新（v1.9 起按场景各记各的） */
+    AICFG.lastItem = item; AICFG.lastMode = mode;
+    AICFG.lastByMode = AICFG.lastByMode || {};
+    AICFG.lastByMode[mode] = item;
+    try { saveCfg(); } catch(e){}
+
+    setWatermark();
+    loadPhoto(item.n, item.pic);   // 配图开着就后台画，不 await、不阻塞界面
+  }catch(e){
+    /* 兜底：任何意外都不该让按钮永久卡住 */
+    const item = pick(mode);
+    lastSrc = 'local'; lastModel = '';
+    currentItem = item;
+    AICFG.lastItem = item; AICFG.lastMode = mode;
+    AICFG.lastByMode = AICFG.lastByMode || {};
+    AICFG.lastByMode[mode] = item;
+    try { saveCfg(); } catch(e2){}
+    render(item, false);
+    setWatermark();
+    loadPhoto(item.n, item.pic);
+  }finally{
+    if (myToken === reqToken){
+      dice.className = 'dice'; dice.textContent = '🎲';
+      label.textContent = '换 一 个';
+      btn.disabled = false;
+      dish.classList.remove('loading');
+      busy = false;
+    }
+  }
+}
+
+/* 进入结果页。
+   ★ v1.7 行为变更（按用户要求）：第一次点进来【不自动刷新】——
+     直接显示上次这个场景最后显示的那道菜；想换就手动点「换一个」。
+     只有从来没出过结果（首次安装/第一次点）才自动出一次，免得进来是空白。 */
+function openResult(m){
+  mode = m;
+  busy = false;                       // 换页面就允许立刻发起新请求
+  reqToken++;                         // 让上一个页面未完成的请求作废
+  document.documentElement.dataset.theme = DATA[m].theme;
+  $('#r-title').innerHTML =
+    '<svg class="star" viewBox="0 0 24 24" fill="#F2C452"><path d="M12 1l3.1 7.2 7.9.7-5.9 5.2 1.7 7.7L12 17.9 5.2 21.8l1.7-7.7L1 8.9l7.9-.7z"/></svg>'
+    + DATA[m].title;
+  showPage('#page-result');
+  syncChefBtn();                      // 进页面先按当前配置定一次按钮显隐（shuffle 是异步的，不能只靠它）
+
+  const last = (AICFG.lastByMode && AICFG.lastByMode[m])
+            || (AICFG.lastMode === m ? AICFG.lastItem : null);
+  if (last && last.n){
+    /* 有上次这个场景的结果 → 原样显示，绝不自动刷新 */
+    cur = -1;                          // 下次「换一个」不做去重
+    currentItem = last;
+    lastSrc = 'kept'; lastModel = '';
+    render(last, false);
+    setWatermark();
+    if (imgReady()) loadPhoto(last.n, last.pic);   // 图有缓存就直接盖，没有才画
+  } else {
+    /* ★ v1.9：从来没有出过结果 → 也【不自动刷新】，直接从本地菜谱秒出一道（不联网、不等 AI）。
+       想要 AI 推荐就手动点「换一个」，点了才调大模型。 */
+    cur = -1;
+    const item = pick(m);
+    currentItem = item;
+    lastSrc = 'local'; lastModel = '';
+    AICFG.lastItem = item; AICFG.lastMode = m;
+    AICFG.lastByMode = AICFG.lastByMode || {};
+    AICFG.lastByMode[m] = item;
+    try { saveCfg(); } catch(e){}
+    render(item, false);
+    setWatermark();
+    syncChefBtn();
+    loadPhoto(item.n, item.pic);
+  }
+}
+
+function goHome(){ showPage('#page-home'); }
+
+/* 给安卓外壳用的钩子：按手机返回键时先回首页，在首页再退出 */
+window.__goHome = goHome;
+
+/* ---------------- 设置页 ---------------- */
+/* 可选的口味标签，点一下切换选中 */
+const PREFS = ['不吃辣', '爱吃肉', '要清淡', '爱吃面食', '离不开米饭', '要快省事', '爱吃油炸', '爱喝汤'];
+
+function fillPrefs(){
+  const wrap = document.getElementById('pref-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = PREFS.map(x => '<button class="pref" type="button" data-pref="' + x + '">' + x + '</button>').join('');
+  wrap.querySelectorAll('.pref').forEach(b => {
+    b.addEventListener('click', () => {
+      const arr = AICFG.prefs || [];
+      const i = arr.indexOf(b.dataset.pref);
+      if (i >= 0) arr.splice(i, 1); else arr.push(b.dataset.pref);
+      AICFG.prefs = arr;
+      saveCfg();
+      cfgDirty = true;
+      syncPrefs();
+      setStatus(arr.length ? '✓ 口味偏好：' + arr.join('、') : '已清空口味偏好', 'ok');
+    });
+  });
+}
+
+function syncPrefs(){
+  const arr = AICFG.prefs || [];
+  document.querySelectorAll('#pref-wrap .pref').forEach(b => {
+    b.classList.toggle('on', arr.indexOf(b.dataset.pref) >= 0);
+  });
+  const el = document.getElementById('set-preftext');
+  if (el) el.value = AICFG.prefsText || '';
+}
+
+/* ---------------- 本地菜谱管理 ---------------- */
+let dishPool = 'cook';        // 正在管理哪个池子
+
+function renderDishList(){
+  const list = document.getElementById('dish-list');
+  if (!list) return;
+
+  const base  = (DATA[dishPool] && DATA[dishPool].list) ? DATA[dishPool].list : [];
+  const mine  = (AICFG.myDishes || []).filter(d => (d.mode || 'cook') === dishPool);
+  const removed = AICFG.removed || [];
+  const rows = [];
+
+  base.forEach(d => {
+    const off = removed.indexOf(d.n) >= 0;
+    rows.push('<button class="dish-chip' + (off ? ' off' : '') + '" type="button" data-n="'
+      + d.n + '" data-mine="0">' + d.n + '</button>');
+  });
+  mine.forEach(d => {
+    const off = removed.indexOf(d.n) >= 0;
+    rows.push('<button class="dish-chip' + (off ? ' off' : '') + '" type="button" data-n="'
+      + d.n + '" data-mine="1">' + d.n + '<span class="x" data-del="1">×</span></button>');
+  });
+
+  list.innerHTML = rows.join('') || '<div class="set-hint">这个池子空了</div>';
+
+  const cnt = document.getElementById('dish-count');
+  if (cnt) cnt.textContent = '（启用 ' + localPool(dishPool).length + ' 道：内置 '
+    + base.length + ' + 自建 ' + mine.length + '）';
+
+  document.querySelectorAll('#dish-pool .ms-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.pool === dishPool);
+  });
+}
+
+function addMyDish(){
+  const nameEl = document.getElementById('new-dish-name');
+  const ingEl  = document.getElementById('new-dish-ing');
+  const name = (nameEl.value || '').trim();
+  if (!name){ setStatus('先写个菜名吧', 'err'); return; }
+
+  const raw = (ingEl.value || '').trim();
+  const ing = raw ? raw.split(/[、,，/\s]+/).map(x => x.trim()).filter(Boolean).slice(0, 6) : [];
+  const modeEl = document.querySelector('#new-dish-mode .ms-btn.active');
+  const mode = modeEl ? modeEl.dataset.mode : 'cook';
+
+  const exists = (AICFG.myDishes || []).some(d => d.n === name)
+              || ((DATA[mode] && DATA[mode].list) || []).some(d => d.n === name);
+  if (exists){ setStatus('「' + name + '」已经在菜谱里了', 'err'); return; }
+
+  AICFG.myDishes = (AICFG.myDishes || []);
+  AICFG.myDishes.push({ n: name, ing: ing, mode: mode, e: '🍽', t: ['自建'], d: '自己加的菜。', pic: '' });
+  AICFG.removed = (AICFG.removed || []).filter(x => x !== name);
+  saveCfg();
+  cfgDirty = true;
+
+  nameEl.value = ''; ingEl.value = '';
+  dishPool = mode;
+  renderDishList();
+  setStatus('✓ 已加入「' + name + '」'
+    + (ing.length ? '，配料：' + ing.join('、') : '（没写配料，做的时候自己拿主意）'), 'ok');
+}
+
+function fillProviders(){
+  $('#set-provider').innerHTML = Object.keys(PROVIDERS)
+    .map(k => '<option value="' + k + '">' + PROVIDERS[k].name + '</option>').join('');
+}
+
+/* 画图服务商下拉 + 服务商切换时的联动（模型下拉、接口地址占位） */
+function fillImgProviders(){
+  const sel = document.getElementById('set-imgprovider');
+  if (!sel) return;
+  sel.innerHTML = Object.keys(IMG_PROVIDERS)
+    .map(k => '<option value="' + k + '">' + IMG_PROVIDERS[k].name + '</option>').join('');
+
+  sel.addEventListener('change', () => {
+    /* ★ 同文本模型：先把当前画图服务商填的内容存回它的格子，
+       再切到新服务商并取回它之前存的（没有就是空的 + 带一个默认模型）。 */
+    stashImgCfg();
+    pullImgCfg(sel.value);
+    const ip = IMG_PROVIDERS[AICFG.imgProvider] || IMG_PROVIDERS.zhipu;
+    const baseEl = document.getElementById('set-imgbase');
+    if (baseEl){
+      baseEl.value = AICFG.imgBase || '';
+      baseEl.placeholder = ip.base || 'https://你的服务地址/v1';
+    }
+    const keyEl = document.getElementById('set-imgkey');
+    if (keyEl) keyEl.value = AICFG.imgKey || '';
+    fillImgModels(true);            // 用回这家的模型
+    saveCfg();
+    cfgDirty = true;
+    updateImgHint();
+    syncSwitches();
+    setStatus(AICFG.imgKey
+      ? '✓ 已切到「' + ip.name + '」，下面显示的是你之前给它填的画图配置'
+      : '已切到「' + ip.name + '」—— 这家还没填过画图 Key，填一条新的吧', 'ok');
+  });
+
+  const msel = document.getElementById('set-imgmodel');
+  if (msel){
+    msel.addEventListener('change', () => {
+      const m = currentImgModel();
+      if (m){ AICFG.imgModel = m; }
+      updateImgHint();
+      syncSwitches();
+    });
+  }
+  const minp = document.getElementById('set-imgmodel-custom');
+  if (minp) minp.addEventListener('input', () => { updateImgHint(); syncSwitches(); });
+}
+
+function syncSettingsUI(){
+  $('#set-provider').value = AICFG.provider;
+  $('#set-city').value     = AICFG.city || '';
+  syncTextFields();          // key / model / base 三项 + 占位，都由它负责
+
+  /* 画图服务商 / 模型的联动下拉 */
+  const ipKey = IMG_PROVIDERS[AICFG.imgProvider] ? AICFG.imgProvider : 'zhipu';
+  const ip = IMG_PROVIDERS[ipKey];
+  $('#set-imgprovider').value = ipKey;
+  $('#set-imgkey').value      = AICFG.imgKey || '';
+  $('#set-imgbase').value     = AICFG.imgBase || '';
+  $('#set-imgbase').placeholder = ip.base || 'https://你的服务地址/v1';
+  fillImgModels(true);       // 刷新模型下拉（保留当前模型）
+
+  syncPrefs();
+  renderDishList();
+  syncSwitches();
+  applyAiVisibility();       // 顶层开关决定哪些卡片显示
+}
+
+/* 顶层开关：启用 AI → 显示模型服务 + 云端菜谱；不启用 → 只留本地菜谱。
+   ★ v1.8：本地菜谱块改成「只有不启用 AI 时显示」——启用 AI 时用云端菜谱，
+     否则同一份本地菜谱在设置页里会出现两次（用户反馈的重复问题）。 */
+function applyAiVisibility(){
+  const on = AICFG.useAI !== false;
+  document.querySelectorAll('#sw-aion .as-btn').forEach(b => {
+    b.classList.toggle('active', (b.dataset.aion === '1') === on);
+  });
+  const bm = document.getElementById('blk-model');
+  const bc = document.getElementById('blk-cloud');
+  const bl = document.getElementById('blk-local');
+  if (bm) bm.classList.toggle('on', on);
+  if (bc) bc.classList.toggle('on', on);
+  if (bl) bl.classList.toggle('on', !on);      // 本地菜谱只在「不启用 AI」时出现
+
+  const hint = document.getElementById('aion-hint');
+  if (hint){
+    if (on){
+      hint.textContent = aiConfigured()
+        ? '已启用 AI：推荐走「' + (PROVIDERS[AICFG.provider] || {}).name + '」，可在下面调服务与口味。'
+        : '已启用 AI，但还没填 Key —— 会先退回本地菜谱，填了 Key 才真正联网。';
+    } else {
+      hint.textContent = '未启用 AI：只用下面这份本地菜谱，不联网、不花钱。';
+    }
+  }
+}
+
+/* 画图模型下拉跟着「服务商」变；切换服务商时把模型 ID 也带过去 */
+function fillImgModels(keepCurrent){
+  const sel = document.getElementById('set-imgmodel');
+  if (!sel) return;
+  const ipKey = IMG_PROVIDERS[AICFG.imgProvider] ? AICFG.imgProvider : 'zhipu';
+  const ip = IMG_PROVIDERS[ipKey];
+  const models = ip.models || [];
+  sel.innerHTML = models.map(m => '<option value="' + m.id + '">' + m.label + '</option>').join('')
+    + '<option value="__custom__">自定义模型名…</option>';
+
+  const cur = AICFG.imgModel || '';
+  const known = models.some(m => m.id === cur);
+  if (known && keepCurrent !== false) sel.value = cur;
+  else if (!cur && models.length) sel.value = models[0].id;
+  else sel.value = '__custom__';
+
+  /* 自定义时补一个输入框 */
+  let inp = document.getElementById('set-imgmodel-custom');
+  if (sel.value === '__custom__'){
+    if (!inp){
+      inp = document.createElement('input');
+      inp.id = 'set-imgmodel-custom';
+      inp.className = 'set-input';
+      inp.style.marginTop = '8px';
+      inp.placeholder = '填服务商的模型 ID，例如 Wan-AI/Wan2.2-T2I';
+      inp.autocomplete = 'off';
+      sel.parentNode.insertBefore(inp, sel.nextSibling);
+    }
+    inp.style.display = 'block';
+    inp.value = known ? '' : cur;
+  } else if (inp){
+    inp.style.display = 'none';
+  }
+  updateImgHint();
+}
+
+/* 当前有效的画图模型 ID：下拉选「自定义」时读输入框 */
+function currentImgModel(){
+  const sel = document.getElementById('set-imgmodel');
+  if (sel && sel.value === '__custom__'){
+    const inp = document.getElementById('set-imgmodel-custom');
+    return inp ? inp.value.trim() : '';
+  }
+  return sel ? sel.value : (AICFG.imgModel || '');
+}
+
+/* 画图说明：跟着服务商/模型变 —— 各家差距很大，必须讲清楚 */
+function updateImgHint(){
+  const el = $('#img-hint');
+  const provEl = $('#img-prov-hint');
+  const modelEl = $('#imgmodel-hint');
+  const lab = $('#img-prov-label');
+  const ipKey = IMG_PROVIDERS[AICFG.imgProvider] ? AICFG.imgProvider : 'zhipu';
+  const ip = IMG_PROVIDERS[ipKey];
+  const m = currentImgModel();
+
+  if (lab) lab.textContent = '（' + (ip.name || '画图') + '）';
+  if (provEl) provEl.innerHTML = ip.hint || '';
+
+  if (modelEl){
+    const label = (ip.models || []).find(x => x.id === m);
+    modelEl.innerHTML = label
+      ? '当前：<b>' + label.label + '</b>。生成要 5–30 秒，所以先出 emoji、画好自动换上；同一道菜只画一次。'
+      : (m ? '当前模型：<b>' + m + '</b>。' : '还没选模型。');
+  }
+  if (el){
+    el.innerHTML = ip.base
+      ? '默认接口地址：<b>' + ip.base + '</b>（留空即用默认；填别的才覆盖）。'
+      : '这个服务没有默认地址，必须自己填接口地址。';
+  }
+}
+
+/* 把顶层开关、画图开关的高亮和提示文字刷成当前配置的样子 */
+function syncSwitches(){
+  const useAI = AICFG.useAI !== false;
+  const imgOn = AICFG.imgOn === true;
+  document.querySelectorAll('#sw-img .ms-btn').forEach(b => {
+    b.classList.toggle('active', (b.dataset.imgon === '1') === imgOn);
+  });
+
+  const el = $('#mode-hint');
+  if (!el) return;
+  const parts = [];
+  if (!useAI) parts.push('这次走本地菜谱，不联网、不花钱');
+  else if (aiConfigured()) parts.push('这次由 AI 现想：菜名、标签、推荐语都是模型给的');
+  else parts.push('选了 AI 但还没填 Key —— 会自动退回本地菜谱');
+
+  if (imgOn){
+    const nip = IMG_PROVIDERS[AICFG.imgProvider] || IMG_PROVIDERS.zhipu;
+    parts.push(AICFG.imgKey && AICFG.imgKey.trim()
+      ? '配图走 ' + nip.name.split('（')[0] + ' 的 ' + (currentImgModel() || '默认模型') + '，画好自动换上'
+      : '配图选了 AI 画图，但还没填画图 Key');
+  } else {
+    parts.push('配图只用 emoji');
+  }
+  el.textContent = parts.join('；');
+}
+
+function collectForm(){
+  AICFG.provider = $('#set-provider').value;
+  AICFG.key      = $('#set-key').value.trim();
+  AICFG.model    = $('#set-model').value.trim();
+  AICFG.base     = $('#set-base-url').value.trim();
+  AICFG.city     = $('#set-city').value.trim();
+  AICFG.prefsText = $('#set-preftext').value.trim();
+  AICFG.imgKey   = $('#set-imgkey').value.trim();
+  AICFG.imgProvider = $('#set-imgprovider').value;
+  AICFG.imgBase  = $('#set-imgbase').value.trim();
+  const m = currentImgModel();
+  if (m) AICFG.imgModel = m;
+  stashTextCfg();     // 收完立刻回写到「按服务商」的表里
+  stashImgCfg();
+}
+
+function setAiStatus(text, cls){
+  const el = document.getElementById('ai-status');
+  if (el){ el.className = 'set-status' + (cls ? ' ' + cls : ''); el.textContent = text; }
+}
+function setImgStatus(text, cls){
+  const el = document.getElementById('img-status');
+  if (el){ el.className = 'set-status' + (cls ? ' ' + cls : ''); el.textContent = text; }
+}
+
+function setStatus(text, cls){
+  const el = $('#set-status');
+  el.className = 'set-status' + (cls ? ' ' + cls : '');
+  el.textContent = text;
+}
+
+function openSettings(){
+  const act = document.querySelector('.page.active');
+  settingsFrom = (act && act.id === 'page-result') ? '#page-result' : '#page-home';
+  syncSettingsUI();
+  if (!IS_ANDROID){
+    setStatus('当前是浏览器模式：AI 由本机 server.py 提供，请改 ai-config.json。\n这个设置页是给装到手机上的 APK 用的。');
+  } else if (AICFG.useAI === false){
+    setStatus('当前：未启用 AI，只用本地菜谱');
+  } else {
+    setStatus(aiConfigured() ? '当前：AI 已启用'
+                             : '当前：启用了 AI 但还没填 Key，暂走本地菜谱（不联网、不花钱）');
+  }
+  showPage('#page-settings');
+}
+
+async function testAI(){
+  /* 只测「推荐」这一套：文本模型 + 它的 Key 和接口地址。
+     完全不碰画图 —— 没配画图 Key 也照样能测。 */
+  if (!IS_ANDROID){
+    setAiStatus('浏览器模式请改 ai-config.json 后重启 server.py', 'err');
+    return;
+  }
+  collectForm();
+  if (!aiReady()){
+    setAiStatus('还没填 Key（或者你在顶层选了「不启用 AI」）', 'err');
+    return;
+  }
+  /* ★ 先存下来再测：原生侧是从手机本地存储读配置的，
+     只填在输入框里它读不到，会误报"还没填 API Key" */
+  saveCfg();
+  cfgDirty = true;
+  setAiStatus('正在测推荐，请稍候…');
+  const r = await askAI('takeout');
+  if (r && r.dish && r.dish.n){
+    setAiStatus('✓ 推荐通了！模型给的是「' + r.dish.n + '」'
+      + (r.dish.d ? '\n' + r.dish.d : '')
+      + '\n（配置已保存；这次没有触碰画图）', 'ok');
+  } else if (r && r.reason){
+    setAiStatus('✗ 推荐没通：' + r.reason, 'err');
+  } else {
+    setAiStatus('✗ 推荐没通。检查 Key、接口地址，以及手机能不能访问这个服务。', 'err');
+  }
+}
+
+async function testImage(){
+  /* 只测「画图」这一套：画图服务商 + Key。
+     没开画图、没填 Key 都不影响上面的推荐功能，各测各的。 */
+  if (!IS_ANDROID){
+    setImgStatus('浏览器模式请改 ai-config.json 里的 img_key 后重启 server.py', 'err');
+    return;
+  }
+  collectForm();
+  if (!imgReady()){
+    setImgStatus('还没开画图、或没填画图 Key —— 不开也不影响用，上面的推荐照常', 'err');
+    return;
+  }
+  saveCfg();
+  cfgDirty = true;
+  setImgStatus('正在画一张测试图（可能要十几秒到半分钟）…');
+  const box = document.getElementById('test-img-preview');
+  if (box) box.style.display = 'none';           // 先藏旧图，别让旧结果冒充这次的
+  /* ★ v1.9：force=true —— 每次点测试都真调一次接口。
+     之前 force=false 会被本次会话缓存直接命中，换模型也「秒成功」，纯粹是假象。 */
+  const data = await askImage('一碗热汤面', '一碗白瓷碗装的热汤面，冒着热气，撒了葱花', true, false);
+  if (data){
+    const box = document.getElementById('test-img-preview');
+    const thumb = document.getElementById('test-img-thumb');
+    if (thumb) thumb.src = data;
+    if (box) box.style.display = 'block';
+    setImgStatus('✓ 画图通了（' + (IMG_PROVIDERS[AICFG.imgProvider] || {}).name + ' / ' + (currentImgModel() || '') + '）', 'ok');
+  } else {
+    setImgStatus('✗ 没画出来' + (window.__imgErr ? '：' + window.__imgErr : '') + '。检查画图 Key 是否正确、模型 ID 是否存在、额度是不是用完了。', 'err');
+  }
+}
+
+/* ---------------- 初始化 ---------------- */
+loadCfg();
+fillProviders();
+fillImgProviders();
+fillPrefs();
+syncSettingsUI();
+renderDishList();
+
+/* 图片加载失败就退回 emoji，绝不显示一个黑圈 */
+(function(){
+  const img = document.getElementById('d-photo');
+  const plate = document.getElementById('d-plate');
+  if (img && plate){
+    img.addEventListener('error', () => plate.classList.remove('has-photo'));
+  }
+})();
+
+/* ★ v1.8：只有一个「大厨绘图」按钮，在圆形图片下方。
+   点它 = 用当前配置的画图服务商 + 模型，为这道菜（重新）画一张图。
+   系统默认自动画的图会先出 emoji 再盖上；这里点了就强制重画一张。
+   （原来右下那个「盲盒生图」已按用户要求去掉。） */
+(function(){
+  const chef = document.getElementById('d-redraw-pro');
+  const busyPainting = () => {
+    const mark = document.getElementById('d-painting');
+    return mark && mark.classList.contains('on');
+  };
+  if (chef){
+    chef.addEventListener('click', () => {
+      if (!imgReady() || !currentItem) return;
+      if (busyPainting()) return;
+      /* 没开通画图 / 没填 Key 的话，给一句明确提示，别让用户点了没反应 */
+      if (!AICFG.imgKey || !AICFG.imgKey.trim()){
+        toast('还没填画图 Key —— 去设置 → 菜品配图 里填一个吧');
+        return;
+      }
+      loadPhoto(currentItem.n, currentItem.pic, true, true);
+    });
+  }
+})();
+
+/* 一个轻量提示条，用在结果页（设置页的状态行在别的页面） */
+function toast(text){
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+/* 事件绑定 */
+document.querySelectorAll('[data-go]').forEach(el => {
+  el.addEventListener('click', () => openResult(el.dataset.go));
+});
+document.querySelectorAll('[data-back]').forEach(el => {
+  el.addEventListener('click', goHome);
+});
+$('#btn-shuffle').addEventListener('click', shuffle);
+
+/* 设置页交互 */
+$('#gear-home').addEventListener('click', openSettings);
+$('#gear-result').addEventListener('click', openSettings);
+$('#set-back').addEventListener('click', () => {
+  /* 从结果页进来的，就回结果页；配置改过的话顺手重新要一个，
+     省得用户看到"配置好了但还写着未配置"的老结果 */
+  if (settingsFrom === '#page-result'){
+    showPage('#page-result');
+    if (cfgDirty){ cfgDirty = false; shuffle(); }
+  } else {
+    goHome();
+  }
+});
+$('#set-provider').addEventListener('change', () => {
+  /* ★ 先把当前服务商输入框里的内容存回它自己的格子，再切到新的服务商，
+     把新服务商之前填过的 Key / 接口地址 / 模型名取出来填回输入框。
+     这样「选 DeepSeek 显示 DeepSeek 的，切 Kimi 是空的，切回来又有」就成立了。 */
+  stashTextCfg();
+  pullTextCfg($('#set-provider').value);
+  syncTextFields();
+  saveCfg();
+  cfgDirty = true;
+  const p = PROVIDERS[AICFG.provider];
+  setStatus(AICFG.key
+    ? '✓ 已切到「' + p.name + '」，下面显示的是你之前给它填的配置'
+    : '已切到「' + p.name + '」—— 这家还没填过 Key，填一条新的吧', 'ok');
+});
+
+/* 把 AICFG 里当前这家的 key/base/model 刷进输入框（不碰服务商下拉本身） */
+function syncTextFields(){
+  const p = PROVIDERS[AICFG.provider] || PROVIDERS.deepseek;
+  $('#set-key').value   = AICFG.key || '';
+  $('#set-model').value = AICFG.model || '';
+  $('#set-model').placeholder = p.model || '服务商给的模型名';
+  $('#set-base-url').value = AICFG.base || '';
+  $('#set-base-url').placeholder = p.base || 'https://你的服务地址/v1';
+  $('#set-base').textContent = p.base ? ('默认接口地址：' + p.base)
+    : '这个选项没有默认地址，把服务商给的接口地址填进去';
+}
+$('#set-eye').addEventListener('click', () => {
+  const inp = $('#set-key');
+  inp.type = (inp.type === 'password') ? 'text' : 'password';
+});
+$('#set-img-eye').addEventListener('click', () => {
+  const inp = $('#set-imgkey');
+  inp.type = (inp.type === 'password') ? 'text' : 'password';
+});
+
+/* ★ 顶层开关：启用 AI ↔ 不启用 AI
+   启用 → 展开模型服务 + 云端菜谱；不启用 → 只留本地菜谱，不联网不花钱 */
+document.querySelectorAll('#sw-aion .as-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    collectForm();
+    AICFG.useAI = (b.dataset.aion === '1');
+    saveCfg();
+    cfgDirty = true;
+    applyAiVisibility();
+    syncSwitches();
+    syncChefBtn();                       // 不启用 AI 时结果页的「大厨绘图」要收起来
+    setStatus(AICFG.useAI
+      ? (aiConfigured() ? '✓ 已启用 AI：推荐会走大模型'
+                        : '✓ 已启用 AI，但还没填 Key —— 会先退回本地菜谱')
+      : '✓ 已不启用 AI：只用本地菜谱，不联网、不花钱', 'ok');
+  });
+});
+
+/* 配图切换：AI 画图 ↔ 只用 emoji */
+document.querySelectorAll('#sw-img .ms-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    collectForm();                       // 顺手把输入框里的画图 Key 收进来
+    AICFG.imgOn = (b.dataset.imgon === '1');
+    saveCfg();
+    cfgDirty = true;
+    syncSwitches();
+    syncChefBtn();                       // 关掉画图 → 结果页那个按钮也要收起来
+    setStatus(AICFG.imgOn
+      ? (imgReady() ? '✓ 已开启 AI 画图：图要等几秒到半分钟，画好会自动换上'
+                    : '已开启 AI 画图，但还没填画图 Key，暂时还是 emoji')
+      : '✓ 已切回只用 emoji', 'ok');
+  });
+});
+
+/* 本地菜谱：切换池子 / 停用恢复 / 删除自建 / 添加 */
+document.querySelectorAll('#dish-pool .ms-btn').forEach(b => {
+  b.addEventListener('click', () => { dishPool = b.dataset.pool; renderDishList(); });
+});
+document.querySelectorAll('#new-dish-mode .ms-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#new-dish-mode .ms-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+  });
+});
+(function(){
+  const list = document.getElementById('dish-list');
+  if (list) list.addEventListener('click', (e) => {
+    const chip = e.target.closest('.dish-chip');
+    if (!chip) return;
+    const name = chip.dataset.n;
+    const isMine = chip.dataset.mine === '1';
+
+    if (e.target.dataset.del === '1'){            // 自建菜：× 彻底删掉
+      AICFG.myDishes = (AICFG.myDishes || []).filter(d => d.n !== name);
+      AICFG.removed = (AICFG.removed || []).filter(n => n !== name);
+      saveCfg(); cfgDirty = true; renderDishList();
+      setStatus('✓ 已删掉自建的「' + name + '」', 'ok');
+      return;
+    }
+
+    const removed = AICFG.removed || [];
+    const i = removed.indexOf(name);
+    if (i >= 0) removed.splice(i, 1); else removed.push(name);
+    AICFG.removed = removed;
+    saveCfg(); cfgDirty = true; renderDishList();
+    setStatus(i >= 0 ? '✓ 已恢复「' + name + '」'
+                     : '已停用「' + name + '」，不会再被推荐' + (isMine ? '（点 × 可彻底删掉）' : ''), 'ok');
+  });
+})();
+(function(){
+  const btn = document.getElementById('new-dish-add');
+  if (btn) btn.addEventListener('click', addMyDish);
+})();
+
+/* 城市：填了就让 AI 优先推当地吃食（小吃、套餐、早餐都算） */
+$('#set-city').addEventListener('change', () => {
+  AICFG.city = $('#set-city').value.trim();
+  saveCfg();
+  cfgDirty = true;
+  setStatus(AICFG.city
+    ? '✓ 已记住城市：' + AICFG.city + '，以后优先推荐当地常见吃食'
+    : '已清空城市', 'ok');
+});
+$('#set-save').addEventListener('click', () => {
+  collectForm();
+  saveCfg();
+  syncSettingsUI();
+  syncChefBtn();
+  cfgDirty = true;
+  setStatus(aiReady()
+    ? '✓ 已保存。返回后点「点外卖 / 自己做」就会走大模型了。'
+    : '已保存（没填 Key，仍走内置菜谱，不花钱）', 'ok');
+});
+$('#test-ai').addEventListener('click', testAI);       // 只测推荐
+$('#test-img').addEventListener('click', testImage);   // 只测画图
+
+/* 水印如实标注这次推荐是 AI 出的还是本地池子出的 —— 不假装 */
+function setWatermark(){
+  const el = document.getElementById('watermark');
+  if (!el) return;
+  const localText = AICFG.useAI === false
+    ? '本地菜谱随机 · 未启用 AI'
+    : (!aiConfigured() ? '本地菜谱随机 · 还没填 Key（点 ⚙ 可开启）'
+                       : '本地菜谱随机 · 这次没走大模型');
+  const map = {
+    'ai':             'AI 推荐 · ' + (lastModel || '大模型'),
+    'mock':           'AI 推荐 · 模拟模式（未调用真实接口，没花钱）',
+    'local':          localText,
+    'local-fallback': 'AI 没返回结果 · 已回退本地菜谱',
+    'kept':           '上次的结果 · 点「换一个」才刷新'
+  };
+  el.textContent = (IS_ANDROID ? '' : '示意稿 · ') + (map[lastSrc] || dataFrom);
+}
+
+/* 启动：浏览器里先试 data.json，拿不到就用内置；APK 里直接用内置（无 http 服务） */
+(async function boot(){
+  if (!IS_ANDROID){
+    try{
+      const ctrl  = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 2000);
+      const res   = await fetch(SOURCE, { signal: ctrl.signal, cache: 'no-store' });
+      clearTimeout(timer);
+      if (res.ok){
+        const ext = await res.json();
+        if (validData(ext)){ DATA = ext; dataFrom = '数据源 ' + SOURCE; }
+        else console.warn('[数据源] 结构不符合约定，已忽略，继续用内置数据');
+      }
+    }catch(e){ /* file:// 打开或接口不可用 → 静默回退内置数据 */ }
+  }
+  setWatermark();
+  syncChefBtn();          // 启动就把「大厨绘图」按钮的显隐定下来
+
+  /* 深链接：?m=takeout|cook 直接进结果页；?p=settings 进设置页 */
+  const qs = new URLSearchParams(location.search);
+  const qm = qs.get('m');
+  if (qm && DATA[qm]) openResult(qm);
+  else if (qs.get('p') === 'settings') openSettings();
+})();
+</script>
+</body>
+</html>

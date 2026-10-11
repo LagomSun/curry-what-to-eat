@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+}
+
+/* ★ 签名密码不写在代码里（源码要开源）：
+   从 local.properties 或环境变量 WTE_KS_PASS / WTE_KEY_PASS 读，
+   local.properties 已列入 .gitignore，不会上传。 */
+def localProps = new Properties()
+def lpFile = rootProject.file('local.properties')
+if (lpFile.exists()) localProps.load(new FileInputStream(lpFile))
+def ksPass = localProps.getProperty('keystore.storePassword') ?: System.getenv('WTE_KS_PASS') ?: ''
+def keyPass = localProps.getProperty('keystore.keyPassword') ?: System.getenv('WTE_KEY_PASS') ?: ksPass
+
+android {
+    namespace 'com.lagomsun.whattoeat'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.lagomsun.whattoeat"
+        minSdk 24
+        targetSdk 34
+        versionCode 11
+        versionName "2.0"
+    }
+
+    /* 零第三方依赖：只用 android.app.Activity + WebView，
+       不引 AppCompat / Material，避免 kotlin-stdlib 重复类的坑 */
+    signingConfigs {
+        release {
+            storeFile rootProject.file('keystore/whattoeat-release.jks')
+            storePassword ksPass
+            keyAlias 'whattoeat'
+            keyPassword keyPass
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}

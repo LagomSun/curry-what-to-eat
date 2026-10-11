@@ -1,0 +1,29 @@
+{
+  "_help": [
+    "① 把 enabled 改成 true，填上 api_key，重启 python server.py 即可让 AI 推荐菜品。",
+    "② provider 支持：deepseek / moonshot(Kimi) / dashscope(通义) / zhipu(智谱) / openai / ollama(本地离线)。",
+    "   填了 provider 会自动套用官方的 base_url 和默认 model，一般不用手填。",
+    "③ 用本地 Ollama 完全免费且无需 Key：先装 ollama，跑 `ollama pull qwen2.5:7b`，",
+    "   然后 provider 填 ollama、api_key 随便填个 ollama、enabled 改 true 就行。",
+    "④ api_key 只存在这台电脑上，不会被写进网页，也不会随 HTML 一起发给别人。",
+    "⑤ 想先看效果不花钱：不用改这个文件，直接 python server.py --mock",
+    "⑥ 菜品配图（可选）：img_on 改 true、img_key 填智谱的 Key。",
+    "   智谱 bigmodel.cn 手机号注册，新号送 120 次图像额度。",
+    "   img_model：cogview-4 画得像（¥0.06/张，推荐）；cogview-3-flash 免费但画具体菜容易出彩条。",
+    "   生成要几秒到半分钟，所以页面会先显示 emoji，画好自动换上；画过的图本地缓存不重复画。",
+    "⑦ city 填你在的城市（例如 唐山），模型会优先推荐当地常见的吃食。"
+  ],
+
+  "enabled": false,
+  "provider": "deepseek",
+  "base_url": "",
+  "api_key": "",
+  "model": "",
+  "temperature": 1.2,
+  "timeout": 30,
+  "json_mode": true,
+  "city": "",
+  "img_on": false,
+  "img_key": "",
+  "img_model": "cogview-4"
+}
