@@ -11,6 +11,12 @@ if (lpFile.exists()) localProps.load(new FileInputStream(lpFile))
 def ksPass = localProps.getProperty('keystore.storePassword') ?: System.getenv('WTE_KS_PASS') ?: ''
 def keyPass = localProps.getProperty('keystore.keyPassword') ?: System.getenv('WTE_KEY_PASS') ?: ksPass
 
+/* ★ 别人 clone 下来还没有自己的签名文件 → 也能直接编译：
+   keystore/whattoeat-release.jks 存在才启用签名（出已签名 APK），
+   不存在则 release 出未签名包（app-release-unsigned.apk），不会编译报错。 */
+def ksFile = rootProject.file('keystore/whattoeat-release.jks')
+def hasSigning = ksFile.exists() && ksPass != ''
+
 android {
     namespace 'com.lagomsun.whattoeat'
     compileSdk 34
@@ -27,7 +33,7 @@ android {
        不引 AppCompat / Material，避免 kotlin-stdlib 重复类的坑 */
     signingConfigs {
         release {
-            storeFile rootProject.file('keystore/whattoeat-release.jks')
+            storeFile ksFile
             storePassword ksPass
             keyAlias 'whattoeat'
             keyPassword keyPass
@@ -38,10 +44,16 @@ android {
         release {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.release
+            if (hasSigning) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig null
+            }
         }
         debug {
-            signingConfig signingConfigs.release
+            if (hasSigning) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 
